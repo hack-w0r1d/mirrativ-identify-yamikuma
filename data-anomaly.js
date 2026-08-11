@@ -26,8 +26,15 @@
 const ANOMALY_DATA = {
   m01: [
     {
-      note: "検証中",
-      point: "検証中",
+      note: "頭の毛",
+      point: "頭の毛が通常時と比べて少し大きい。<br>判別が難しいので消去法がおすすめ。",
+      compareIndex: 1
+    },
+  ],
+  m02: [
+    {
+      note: "耳",
+      point: "耳が通常時と比べて垂れている。",
       compareIndex: 1
     },
   ],
@@ -56,6 +63,13 @@ const ANOMALY_DATA = {
     {
       note: "弓",
       point: "弓の向きが通常時と比べて逆向きになっている。",
+      compareIndex: 1
+    },
+  ],
+  m21: [
+    {
+      note: "槍",
+      point: "槍が通常時と比べて大きい。",
       compareIndex: 1
     },
   ],
