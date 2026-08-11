@@ -352,6 +352,7 @@ function openReportModal() {
       <li>すでに掲載されている情報かどうかの確認をお願いします。</li>
       <li>必ず掲載することを保証するものではありません。</li>
       <li>掲載後も画像を変更する可能性があります。</li>
+      <li>提供方法はDMもしくは@メンションどちらでも可能です。</li>
     </ul>
     <a class="modal__cta" href="https://x.com/yu_cielkun" target="_blank" rel="noopener noreferrer">確認して開発者へ情報を送る</a>
   `;
