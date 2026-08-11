@@ -86,10 +86,6 @@
     <!-- ============ 詳細ビュー（異変状態） ============ -->
     <section class="view view--detail" id="detailView" hidden>
 
-      <button type="button" class="back-link" id="backBtn">
-        <span aria-hidden="true">←</span> 一覧に戻る
-      </button>
-
       <header class="detail-head">
         <span class="detail-head__emblem" aria-hidden="true">
           <svg viewBox="0 0 40 40" width="32" height="32">
@@ -115,6 +111,10 @@
       </section>
     </section>
 
+    <button type="button" class="back-link" id="backBtn">
+      一覧へ<span aria-hidden="true">↩︎</span>
+    </button>
+
   </main>
 
   <footer class="footer">
@@ -134,6 +134,16 @@
       <button type="button" class="modal__close" id="modalClose" aria-label="閉じる">×</button>
       <div class="modal__body" id="modalBody"></div>
     </div>
+  </div>
+
+  <div class="transition-overlay" id="transitionOverlay" aria-hidden="true">
+    <svg class="transition-overlay__logo" id="transitionLogo" viewBox="0 0 40 40" width="144" height="144">
+      <path fill-rule="evenodd" fill="currentColor" d="M29.5 20 A9.5 9.5 0 1 0 10.5 20 A9.5 9.5 0 1 0 29.5 20 Z M26.1 20 A6.1 6.1 0 1 0 13.9 20 A6.1 6.1 0 1 0 26.1 20 Z"/>
+      <circle cx="20" cy="20" r="2.7" fill="currentColor"/>
+      <path fill="currentColor" d="M20 2 L23.5 8 L16.5 8 Z"/>
+      <path fill="currentColor" d="M35.6 29 L28.6 29 L32.1 23 Z"/>
+      <path fill="currentColor" d="M4.4 29 L11.4 29 L7.9 23 Z"/>
+    </svg>
   </div>
 
   <script src="data-normal.js?v=0.0.3" defer></script>

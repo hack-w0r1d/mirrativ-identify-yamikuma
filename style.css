@@ -156,6 +156,7 @@ a, button { font-family: inherit; }
   .ticker__track { animation: none; padding-left: 24px; }
 }
 
+/* 危険ニュアンスのバリエーション（比較用） */
 .ticker--danger {
   background: repeating-linear-gradient(
     135deg,
@@ -310,17 +311,21 @@ a, button { font-family: inherit; }
 }
 
 .back-link {
-  display: inline-flex;
+  display: none;
   align-items: center;
   gap: 6px;
-  margin-bottom: 28px;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 40;
   padding: 8px 14px;
-  background: transparent;
+  background: var(--ink);
   border: 1px solid var(--fur-line);
   border-radius: 999px;
   color: var(--lilac);
   font-size: .86rem;
   cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .35);
   transition: border-color .15s ease, color .15s ease;
 }
 
@@ -633,6 +638,50 @@ a, button { font-family: inherit; }
 }
 
 .modal__cta:hover { background: var(--spirit-deep); }
+
+/* ==========================================================
+    画面遷移アニメーション（一覧→詳細）
+    ========================================================== */
+.transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--void);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.transition-overlay.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.transition-overlay.is-leaving {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+
+.transition-overlay__logo {
+  color: var(--spirit);
+}
+
+.transition-overlay.is-active .transition-overlay__logo {
+  animation: transition-spin .45s ease-in-out;
+}
+
+@keyframes transition-spin {
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(.5) rotate(180deg); }
+  100% { transform: scale(1) rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .transition-overlay.is-active .transition-overlay__logo { animation: none; }
+}
 
 /* ==========================================================
     フッター

@@ -127,6 +127,30 @@ function bindThumbFallbacks(root) {
 // 一覧ビューの描画（images/main/{id}.png を使用）
 // ============================================================
 const monsterGrid = document.getElementById("monsterGrid");
+const transitionOverlay = document.getElementById("transitionOverlay");
+const transitionLogo = document.getElementById("transitionLogo");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// カード選択時、ロゴが縮小→時計回りに1回転→元の大きさに戻るアニメーションを
+// 挟んでから詳細画面へ切り替える（画像読み込みの間の“つなぎ”として使用）。
+// 1. is-active でオーバーレイを即座に表示（回転アニメーションが確実に見えるように
+//    フェードインはさせない） 2. 回転が終わったら is-leaving でフェードアウトし、
+//    詳細画面をなめらかに見せる。
+function playCardTransition(monsterId) {
+  if (prefersReducedMotion) {
+    showDetail(monsterId);
+    return;
+  }
+  transitionOverlay.classList.add("is-active");
+  showDetail(monsterId);
+
+  const startFadeOut = () => {
+    transitionOverlay.classList.add("is-leaving");
+    setTimeout(() => transitionOverlay.classList.remove("is-active", "is-leaving"), 320);
+  };
+  transitionLogo.addEventListener("animationend", startFadeOut, { once: true });
+  setTimeout(startFadeOut, 500);
+}
 
 MONSTERS.forEach((monster) => {
   const card = document.createElement("button");
@@ -141,7 +165,7 @@ MONSTERS.forEach((monster) => {
     </span>
     <span class="monster-card__name">${monster.name}</span>
   `;
-  card.addEventListener("click", () => showDetail(monster.id));
+  card.addEventListener("click", () => playCardTransition(monster.id));
   monsterGrid.appendChild(card);
 });
 
@@ -217,6 +241,7 @@ function showDetail(monsterId) {
   gridView.hidden = true;
   detailView.hidden = false;
   tickerGroup.hidden = true;
+  backBtn.style.display = 'inline-flex';
   detailView.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
@@ -224,6 +249,7 @@ function showGrid() {
   detailView.hidden = true;
   gridView.hidden = false;
   tickerGroup.hidden = false;
+  backBtn.style.display = 'none';
   gridView.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
