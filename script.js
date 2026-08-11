@@ -64,27 +64,18 @@ MONSTERS.forEach((monster) => {
 });
 
 // ============================================================
-// プレースホルダーSVG生成
-// possessed=false: 通常状態 / possessed=true: 異変（ヤミクマ憑依）状態
+// ロゴマークSVG（通常状態の画像が無い場合のフォールバックに使用）
 // ============================================================
-function monsterSvg(color, possessed) {
-  const eyeColor = possessed ? "#c9a6ff" : "#ffffff";
-  const glow = possessed
-    ? `<circle cx="50" cy="52" r="34" fill="none" stroke="#8257e8" stroke-width="2" opacity="0.55"/>
-       <circle cx="50" cy="52" r="10" fill="none" stroke="#8257e8" stroke-width="2" opacity="0.85"/>
-       <circle cx="50" cy="52" r="3" fill="#8257e8"/>`
-    : "";
+function logoSvg() {
   return `
     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-      <ellipse cx="28" cy="26" rx="13" ry="13" fill="${color}"/>
-      <ellipse cx="72" cy="26" rx="13" ry="13" fill="${color}"/>
-      <ellipse cx="28" cy="26" rx="6" ry="6" fill="#1b1526"/>
-      <ellipse cx="72" cy="26" rx="6" ry="6" fill="#1b1526"/>
-      <rect x="14" y="30" width="72" height="58" rx="26" fill="${color}"/>
-      <circle cx="38" cy="54" r="4.5" fill="${eyeColor}"/>
-      <circle cx="62" cy="54" r="4.5" fill="${eyeColor}"/>
-      <ellipse cx="50" cy="66" rx="10" ry="8" fill="#1b1526" opacity="0.18"/>
-      ${glow}
+      <g transform="translate(0 10.6)">
+        <path fill-rule="evenodd" fill="#8257e8" d="M73.8 50 A23.8 23.8 0 1 0 26.2 50 A23.8 23.8 0 1 0 73.8 50 Z M65.3 50 A15.3 15.3 0 1 0 34.7 50 A15.3 15.3 0 1 0 65.3 50 Z"/>
+        <circle cx="50" cy="50" r="6.8" fill="#8257e8"/>
+        <path fill="#8257e8" d="M50 5 L58.8 20 L41.3 20 Z"/>
+        <path fill="#8257e8" d="M89 72.5 L71.6 72.6 L80.4 57.4 Z"/>
+        <path fill="#8257e8" d="M11 72.5 L28.4 72.6 L19.7 57.4 Z"/>
+      </g>
     </svg>
   `;
 }
@@ -110,8 +101,6 @@ function renderThumb({ kind, monsterId, index = null, color, possessed = false, 
       src="${candidates[0]}"
       data-candidates="${candidates.join("|")}"
       data-step="0"
-      data-fallback-color="${color}"
-      data-possessed="${possessed}"
       alt="${alt}"
     >
   `;
@@ -124,7 +113,7 @@ function handleThumbError(img) {
     img.dataset.step = String(step);
     img.src = candidates[step];
   } else {
-    img.outerHTML = monsterSvg(img.dataset.fallbackColor, img.dataset.possessed === "true");
+    img.outerHTML = logoSvg();
   }
 }
 
@@ -191,9 +180,10 @@ function showDetail(monsterId) {
     )
     .join("");
 
-  anomalyGrid.innerHTML = monster.anomalies
-    .map(
-      (entry, i) => `
+  anomalyGrid.innerHTML = monster.anomalies.length
+    ? monster.anomalies
+        .map(
+          (entry, i) => `
       <button type="button" class="state-card state-card--anomaly" data-monster="${monster.id}" data-kind="anomaly" data-index="${i + 1}">
         <p class="state-card__note">${entry.note}</p>
         <span class="state-card__thumb">${renderThumb({
@@ -206,8 +196,13 @@ function showDetail(monsterId) {
         })}</span>
       </button>
     `
-    )
-    .join("");
+        )
+        .join("")
+    : `
+      <div class="state-card state-card--anomaly state-card--empty">
+        <span class="state-card__thumb">${logoSvg()}</span>
+      </div>
+    `;
 
   bindThumbFallbacks(normalGrid);
   bindThumbFallbacks(anomalyGrid);
@@ -325,6 +320,7 @@ function openReportModal() {
   modalBody.innerHTML = `
     <p class="modal__eyebrow">情報提供に関する留意事項</p>
     <ul class="modal__list">
+      <li>ヤミクマが変身しているモンスターの画像を送ってください。</li>
       <li>モンスターを拡大した時の画面全体が写っていることを確認してください。</li>
       <li>変異箇所を簡単に添えていただけると助かります（比較画像は大丈夫です）。</li>
       <li>すでに掲載されている情報かどうかの確認をお願いします。</li>

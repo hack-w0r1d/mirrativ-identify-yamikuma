@@ -15,21 +15,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ヤミクマ襲来｜スラコロ 異変モンスター判別ガイド</title>
   <meta name="description" content="Mirrativ「スラコロ」のヤミクマが憑依したモンスターを見分けるための判別ガイド。通常状態と異変状態を見比べて、ヤミクマの気配を探せ。">
-  <!-- OGPタグ（SNSでシェアされたときの見た目用） -->
+
+  <!-- OGP -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ヤミクマ襲来">
   <meta property="og:title" content="ヤミクマ襲来｜スラコロ 異変モンスター判別ガイド">
   <meta property="og:description" content="Mirrativ「スラコロ」のヤミクマが憑依したモンスターを見分けるための判別ガイド。通常状態と異変状態を見比べて、ヤミクマの気配を探せ。">
-  <meta property="og:image" content="https://hack-w0r1d.github.io/mirrativ-identify-yamikuma/images/x-card.jpg">
   <meta property="og:url" content="https://hack-w0r1d.github.io/mirrativ-identify-yamikuma/">
-  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://hack-w0r1d.github.io/mirrativ-identify-yamikuma/images/x-card.jpg">
+  <meta property="og:locale" content="ja_JP">
+
+  <!-- X (Twitter) Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="ヤミクマ襲来｜スラコロ 異変モンスター判別ガイド">
   <meta name="twitter:description" content="Mirrativ「スラコロ」のヤミクマが憑依したモンスターを見分けるための判別ガイド。通常状態と異変状態を見比べて、ヤミクマの気配を探せ。">
   <meta name="twitter:image" content="https://hack-w0r1d.github.io/mirrativ-identify-yamikuma/images/x-card.jpg">
+
+  <link rel="apple-touch-icon" href="apple-touch-icon.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Antique&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <link rel="apple-touch-icon" sizes="192x192" href="apple-touch-icon.jpg">
+  <link rel="stylesheet" href="style.css?v=0.0.0">
 </head>
 <body>
 
@@ -60,11 +66,11 @@
       <p class="briefing">
         <span class="briefing__icon" aria-hidden="true">
           <svg viewBox="0 0 40 40" width="22" height="22">
-            <circle cx="20" cy="20" r="15" fill="none" stroke="currentColor" stroke-width="2.5"/>
-            <circle cx="20" cy="20" r="4" fill="currentColor"/>
-            <path d="M20 3 L24 10 L16 10 Z" fill="currentColor"/>
-            <path d="M35.6 27.5 L27 29.3 L31 22.2 Z" fill="currentColor"/>
-            <path d="M4.4 27.5 L13 29.3 L9 22.2 Z" fill="currentColor"/>
+            <path fill-rule="evenodd" fill="currentColor" d="M29.5 20 A9.5 9.5 0 1 0 10.5 20 A9.5 9.5 0 1 0 29.5 20 Z M26.1 20 A6.1 6.1 0 1 0 13.9 20 A6.1 6.1 0 1 0 26.1 20 Z"/>
+            <circle cx="20" cy="20" r="2.7" fill="currentColor"/>
+            <path fill="currentColor" d="M20 2 L23.5 8 L16.5 8 Z"/>
+            <path fill="currentColor" d="M35.6 29 L28.6 29 L32.1 23 Z"/>
+            <path fill="currentColor" d="M4.4 29 L11.4 29 L7.9 23 Z"/>
           </svg>
         </span>
         異変を感じるモンスターを選択してください。
@@ -87,11 +93,11 @@
       <header class="detail-head">
         <span class="detail-head__emblem" aria-hidden="true">
           <svg viewBox="0 0 40 40" width="32" height="32">
-            <circle cx="20" cy="20" r="15" fill="none" stroke="currentColor" stroke-width="2.5"/>
-            <circle cx="20" cy="20" r="4" fill="currentColor"/>
-            <path d="M20 3 L24 10 L16 10 Z" fill="currentColor"/>
-            <path d="M35.6 27.5 L27 29.3 L31 22.2 Z" fill="currentColor"/>
-            <path d="M4.4 27.5 L13 29.3 L9 22.2 Z" fill="currentColor"/>
+            <path fill-rule="evenodd" fill="currentColor" d="M29.5 20 A9.5 9.5 0 1 0 10.5 20 A9.5 9.5 0 1 0 29.5 20 Z M26.1 20 A6.1 6.1 0 1 0 13.9 20 A6.1 6.1 0 1 0 26.1 20 Z"/>
+            <circle cx="20" cy="20" r="2.7" fill="currentColor"/>
+            <path fill="currentColor" d="M20 2 L23.5 8 L16.5 8 Z"/>
+            <path fill="currentColor" d="M35.6 29 L28.6 29 L32.1 23 Z"/>
+            <path fill="currentColor" d="M4.4 29 L11.4 29 L7.9 23 Z"/>
           </svg>
         </span>
         <h2 class="detail-head__name" id="detailName">――</h2>
@@ -115,8 +121,10 @@
     <nav class="footer__links">
       <a href="privacy.html">プライバシーポリシー</a>
       <a href="disclaimer.html">免責事項</a>
-      <a href="https://x.com/yu_cielkun" target="_blank" rel="noopener noreferrer">X</a>
     </nav>
+    <a class="footer__x" href="https://x.com/yu_cielkun" target="_blank" rel="noopener noreferrer" aria-label="X（旧Twitter）">
+      <img src="images/x-logo-white.png" alt="" width="20" height="20">
+    </a>
     <p>Created by Ciel'N</p>
   </footer>
 
@@ -128,8 +136,8 @@
     </div>
   </div>
 
-  <script src="data-normal.js" defer></script>
-  <script src="data-anomaly.js" defer></script>
-  <script src="script.js" defer></script>
+  <script src="data-normal.js?v=0.0.0" defer></script>
+  <script src="data-anomaly.js?v=0.0.0" defer></script>
+  <script src="script.js?v=0.0.0" defer></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 /* ==========================================================
-  ヤミクマ襲来 ─ トークン定義
-  ========================================================== */
-  :root {
+ヤミクマ襲来 ─ トークン定義
+========================================================== */
+:root {
   --void: #0b0a10;        /* 背景（漆黒） */
   --ink: #17131f;         /* パネル/カード地 */
   --ink-soft: #1f1a29;    /* パネル地（明） */
@@ -156,7 +156,6 @@ a, button { font-family: inherit; }
   .ticker__track { animation: none; padding-left: 24px; }
 }
 
-/* 危険ニュアンスのバリエーション（比較用） */
 .ticker--danger {
   background: repeating-linear-gradient(
     135deg,
@@ -395,9 +394,11 @@ a, button { font-family: inherit; }
 }
 
 .state-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   padding: 20px;
+  gap: 20px;
   background: var(--ink);
   border: 1px solid var(--fur-line);
   border-radius: 6px;
@@ -429,6 +430,16 @@ a, button { font-family: inherit; }
   background: radial-gradient(120% 60% at 50% 0%, rgba(130, 87, 232, .18), transparent 70%);
 }
 
+.state-card--empty {
+  cursor: default;
+}
+
+.state-card--empty:hover {
+  transform: none;
+  border-color: var(--fur-line);
+  box-shadow: none;
+}
+
 .state-card__thumb {
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -447,7 +458,7 @@ a, button { font-family: inherit; }
 }
 
 .state-card__note {
-  margin: 0 0 14px;
+  margin: 0;
   font-size: .92rem;
   color: var(--bone);
   text-align: center;
@@ -585,13 +596,26 @@ a, button { font-family: inherit; }
 
 .modal__list {
   margin: 0 0 24px;
-  padding-left: 1.3em;
+  padding-left: 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
   font-size: .9rem;
   line-height: 1.6;
   color: var(--bone);
+  list-style: none;
+}
+
+.modal__list li {
+  position: relative;
+  padding-left: 1.6em;
+}
+
+.modal__list li::before {
+  content: "✔️";
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .modal__cta {
@@ -636,6 +660,22 @@ a, button { font-family: inherit; }
 }
 
 .footer__links a:hover { color: var(--wisp); text-decoration: underline; }
+
+.footer__x {
+  display: block;
+  width: fit-content;
+  margin: 16px auto 20px;
+  opacity: .7;
+  transition: opacity .15s ease;
+}
+
+.footer__x:hover { opacity: 1; }
+
+.footer__x img {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
 
 /* ==========================================================
     サブページ（プライバシーポリシー・免責事項）
@@ -715,9 +755,9 @@ a, button { font-family: inherit; }
     line-height: 1.35;
   }
 
-  .state-card { padding: 10px 8px; border-radius: 4px; }
+  .state-card { padding: 10px 8px; border-radius: 4px; gap: 10px; }
 
-  .state-card__thumb { max-width: 100%; margin-bottom: 6px; }
+  .state-card__thumb { max-width: 100%; }
 
   .state-card__note {
     font-size: .68rem;
