@@ -30,6 +30,11 @@ const ANOMALY_DATA = {
       point: "頭の毛が通常時と比べて少し大きい。<br>判別が難しいので消去法がおすすめ。",
       compareIndex: 1
     },
+    {
+      note: "色",
+      point: "体の色が通常時と異なる。",
+      compareIndex: 1
+    },
   ],
   m02: [
     {
@@ -55,7 +60,14 @@ const ANOMALY_DATA = {
   m11: [
     {
       note: "杖",
-      point: "杖の形が異なる。",
+      point: "杖の形が通常時と異なる。",
+      compareIndex: 1
+    },
+  ],
+  m12: [
+    {
+      note: "子犬",
+      point: "子犬が脱走している。",
       compareIndex: 1
     },
   ],
@@ -82,6 +94,13 @@ const ANOMALY_DATA = {
     {
       note: "弓",
       point: "弓の向きが通常時と比べて逆向きになっている。",
+      compareIndex: 1
+    },
+  ],
+  m19: [
+    {
+      note: "槍",
+      point: "槍が通常時と比べて短い。",
       compareIndex: 1
     },
   ],
