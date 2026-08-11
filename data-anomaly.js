@@ -38,6 +38,13 @@ const ANOMALY_DATA = {
       compareIndex: 1
     },
   ],
+  m04: [
+    {
+      note: "リボン",
+      point: "リボンが通常時と比べて大きい。",
+      compareIndex: 1
+    },
+  ],
   m06: [
     {
       note: "耳",
