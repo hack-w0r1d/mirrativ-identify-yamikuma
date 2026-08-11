@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BKD9T5BP9D"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-BKD9T5BP9D');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ヤミクマ襲来｜スラコロ 異変モンスター判別ガイド</title>
+  <meta name="description" content="Mirrativ「スラコロ」のヤミクマが憑依したモンスターを見分けるための判別ガイド。通常状態と異変状態を見比べて、ヤミクマの気配を探せ。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Antique&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="apple-touch-icon" sizes="192x192" href="apple-touch-icon.jpg">
+</head>
+<body>
+
+  <header class="header">
+    <div class="header__inner">
+      <p class="header__eyebrow">YAMIKUMA INCIDENT FILE&nbsp;&nbsp;No.██</p>
+      <h1 class="header__title">
+        <span aria-hidden="true">ヤミクマ襲来</span>
+        <span class="sr-only">ヤミクマ襲来</span>
+      </h1>
+      <p class="header__sub">ミッションだ。異変を見抜け。</p>
+    </div>
+  </header>
+
+  <div class="ticker-group" id="tickerGroup">
+    <div class="ticker ticker--danger" role="note">
+      <div class="ticker__track">
+        <span class="ticker__item">未発見のヤミクマ目撃情報募集中！ 情報提供は下記リンクから↓↓</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="main">
+
+    <!-- ============ 一覧ビュー ============ -->
+    <section class="view view--grid" id="gridView">
+
+      <p class="briefing">
+        <span class="briefing__icon" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="22" height="22">
+            <circle cx="20" cy="20" r="15" fill="none" stroke="currentColor" stroke-width="2.5"/>
+            <circle cx="20" cy="20" r="4" fill="currentColor"/>
+            <path d="M20 3 L24 10 L16 10 Z" fill="currentColor"/>
+            <path d="M35.6 27.5 L27 29.3 L31 22.2 Z" fill="currentColor"/>
+            <path d="M4.4 27.5 L13 29.3 L9 22.2 Z" fill="currentColor"/>
+          </svg>
+        </span>
+        異変を感じるモンスターを選択してください。
+      </p>
+
+      <div class="monster-grid" id="monsterGrid" role="list"></div>
+
+      <p class="briefing-note">※ 情報を確認し精査の上、順次データを追加していきます。</p>
+
+      <button type="button" class="report-btn" id="reportBtn">情報提供する</button>
+    </section>
+
+    <!-- ============ 詳細ビュー（異変状態） ============ -->
+    <section class="view view--detail" id="detailView" hidden>
+
+      <button type="button" class="back-link" id="backBtn">
+        <span aria-hidden="true">←</span> 一覧に戻る
+      </button>
+
+      <header class="detail-head">
+        <span class="detail-head__emblem" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="32" height="32">
+            <circle cx="20" cy="20" r="15" fill="none" stroke="currentColor" stroke-width="2.5"/>
+            <circle cx="20" cy="20" r="4" fill="currentColor"/>
+            <path d="M20 3 L24 10 L16 10 Z" fill="currentColor"/>
+            <path d="M35.6 27.5 L27 29.3 L31 22.2 Z" fill="currentColor"/>
+            <path d="M4.4 27.5 L13 29.3 L9 22.2 Z" fill="currentColor"/>
+          </svg>
+        </span>
+        <h2 class="detail-head__name" id="detailName">――</h2>
+        <p class="detail-head__hint">ヤミクマが変身して潜んでいるようだ...。<br>異変パターンは複数存在する場合がある。</p>
+      </header>
+
+      <section class="detail-section" id="normalSection">
+        <h3 class="detail-section__title">通常状態</h3>
+        <div class="reference-grid" id="normalGrid"></div>
+      </section>
+
+      <section class="detail-section detail-section--anomaly" id="anomalySection">
+        <h3 class="detail-section__title">異変状態</h3>
+        <div class="anomaly-grid" id="anomalyGrid"></div>
+      </section>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <nav class="footer__links">
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="disclaimer.html">免責事項</a>
+      <a href="https://x.com/yu_cielkun" target="_blank" rel="noopener noreferrer">X</a>
+    </nav>
+    <p>Created by Ciel'N</p>
+  </footer>
+
+  <div class="modal" id="modal" hidden>
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__panel" role="dialog" aria-modal="true">
+      <button type="button" class="modal__close" id="modalClose" aria-label="閉じる">×</button>
+      <div class="modal__body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="data-normal.js" defer></script>
+  <script src="data-anomaly.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
