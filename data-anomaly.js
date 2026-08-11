@@ -26,8 +26,8 @@
 const ANOMALY_DATA = {
   m01: [
     {
-      note: "尻尾",
-      point: "尻尾の形が通常時と比べて楕円形になっている。",
+      note: "検証中",
+      point: "検証中",
       compareIndex: 1
     },
   ],
