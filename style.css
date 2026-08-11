@@ -299,7 +299,10 @@ a, button { font-family: inherit; }
 /* ==========================================================
     詳細ビュー（異変状態）
     ========================================================== */
-.view--detail { animation: view-fade .35s ease both; }
+.view--detail {
+  animation: view-fade .35s ease both;
+  scroll-margin-top: 28px;
+}
 
 @keyframes view-fade {
   from { opacity: 0; transform: translateY(8px); }
