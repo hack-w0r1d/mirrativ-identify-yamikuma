@@ -422,6 +422,34 @@ a, button { font-family: inherit; }
   display: block;
 }
 
+.yamikuma-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 26px;
+  margin: 0 auto 15px;
+  max-width: 420px;
+}
+
+.yamikuma-tag {
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-family: var(--font-label);
+  font-size: .82rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.yamikuma-tag--action {
+  background: #f2b64c;
+  color: #fff;
+}
+
+.yamikuma-tag--title {
+  background: #e2531f;
+  color: #fff;
+}
+
 .yamikuma-stats {
   width: 100%;
   max-width: 420px;
