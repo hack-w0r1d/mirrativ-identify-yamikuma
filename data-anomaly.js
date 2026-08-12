@@ -27,12 +27,17 @@ const ANOMALY_DATA = {
   m01: [
     {
       note: "頭の毛",
-      point: "頭の毛が通常時と比べて少し大きい。<br>判別が難しいので消去法がおすすめ。",
+      point: "頭の毛が通常時と比べて少し大きい。<br>ヒントの枠線に重なるかどうかで判別可能。",
+      compareIndex: 1
+    },
+    {
+      note: "尻尾",
+      point: "尻尾が通常時と比べて少し長い。<br>単体での判別は難しいので消去法がおすすめ。",
       compareIndex: 1
     },
     {
       note: "色",
-      point: "体の色が通常時と異なる。",
+      point: "体が変色している。",
       compareIndex: 1
     },
   ],
