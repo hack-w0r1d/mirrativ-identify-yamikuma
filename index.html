@@ -67,11 +67,11 @@
         <span class="briefing__icon" aria-hidden="true">
           <svg viewBox="0 0 40 40" width="22" height="22">
             <g transform="translate(0 4.25)">
-              <path fill-rule="evenodd" fill="currentColor" d="M29.5 20 A9.5 9.5 0 1 0 10.5 20 A9.5 9.5 0 1 0 29.5 20 Z M26.1 20 A6.1 6.1 0 1 0 13.9 20 A6.1 6.1 0 1 0 26.1 20 Z"/>
-              <circle cx="20" cy="20" r="2.7" fill="currentColor"/>
-              <path fill="currentColor" d="M20 2 L23.5 8 L16.5 8 Z"/>
-              <path fill="currentColor" d="M35.6 29 L28.6 29 L32.1 23 Z"/>
-              <path fill="currentColor" d="M4.4 29 L11.4 29 L7.9 23 Z"/>
+            <path fill-rule="evenodd" fill="currentColor" d="M29.5 20 A9.5 9.5 0 1 0 10.5 20 A9.5 9.5 0 1 0 29.5 20 Z M26.1 20 A6.1 6.1 0 1 0 13.9 20 A6.1 6.1 0 1 0 26.1 20 Z"/>
+            <circle cx="20" cy="20" r="2.7" fill="currentColor"/>
+            <path fill="currentColor" d="M20 2 L23.5 8 L16.5 8 Z"/>
+            <path fill="currentColor" d="M35.6 29 L28.6 29 L32.1 23 Z"/>
+            <path fill="currentColor" d="M4.4 29 L11.4 29 L7.9 23 Z"/>
             </g>
           </svg>
         </span>
@@ -79,6 +79,12 @@
       </p>
 
       <div class="monster-grid" id="monsterGrid" role="list"></div>
+
+      <div class="yamikuma-divider" aria-hidden="true">
+        <span class="yamikuma-divider__label">SPECIAL TARGET</span>
+      </div>
+
+      <div class="yamikuma-standalone" id="yamikumaStandalone"></div>
 
       <p class="briefing-note">※ 情報を確認し精査の上、順次データを追加していきます。</p>
 
@@ -111,6 +117,45 @@
         <h3 class="detail-section__title">異変状態</h3>
         <div class="anomaly-grid" id="anomalyGrid"></div>
       </section>
+    </section>
+
+    <!-- ============ 詳細ビュー（ヤミクマ本体） ============ -->
+    <section class="view view--detail" id="yamikumaView" hidden>
+
+      <header class="detail-head">
+        <span class="detail-head__emblem" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="32" height="32">
+            <path fill-rule="evenodd" fill="currentColor" d="M29.5 20 A9.5 9.5 0 1 0 10.5 20 A9.5 9.5 0 1 0 29.5 20 Z M26.1 20 A6.1 6.1 0 1 0 13.9 20 A6.1 6.1 0 1 0 26.1 20 Z"/>
+            <circle cx="20" cy="20" r="2.7" fill="currentColor"/>
+            <path fill="currentColor" d="M20 2 L23.5 8 L16.5 8 Z"/>
+            <path fill="currentColor" d="M35.6 29 L28.6 29 L32.1 23 Z"/>
+            <path fill="currentColor" d="M4.4 29 L11.4 29 L7.9 23 Z"/>
+          </svg>
+        </span>
+        <h2 class="detail-head__name">ヤミクマ</h2>
+        <p class="detail-head__hint">すべての異変を引き起こす、正体不明の存在。</p>
+      </header>
+
+      <div class="yamikuma-figure" id="yamikumaFigure"></div>
+
+      <table class="yamikuma-stats">
+        <thead>
+          <tr>
+            <th scope="col">HP</th>
+            <th scope="col">攻撃力</th>
+            <th scope="col">守備力</th>
+            <th scope="col">素早さ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>20</td>
+            <td>16</td>
+            <td>12</td>
+            <td>17</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
   </main>

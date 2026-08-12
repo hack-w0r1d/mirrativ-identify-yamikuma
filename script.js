@@ -64,6 +64,17 @@ MONSTERS.forEach((monster) => {
 });
 
 // ============================================================
+// ヤミクマ本体（一覧の他モンスターとは独立した単体データ。状態なし）
+//   images/main/yamikuma.png    … 一覧の単体リンク用サムネイル
+//   images/yamikuma/yamikuma.png … 詳細画面の本体画像
+// ============================================================
+const YAMIKUMA = {
+  id: "yamikuma",
+  name: "ヤミクマ",
+  stats: { hp: 20, atk: 16, def: 12, spd: 17 }
+};
+
+// ============================================================
 // ロゴマークSVG（通常状態の画像が無い場合のフォールバックに使用）
 // ============================================================
 function logoSvg() {
@@ -136,13 +147,13 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
 // 1. is-active でオーバーレイを即座に表示（回転アニメーションが確実に見えるように
 //    フェードインはさせない） 2. 回転が終わったら is-leaving でフェードアウトし、
 //    詳細画面をなめらかに見せる。
-function playCardTransition(monsterId) {
+function playCardTransition(showFn) {
   if (prefersReducedMotion) {
-    showDetail(monsterId);
+    showFn();
     return;
   }
   transitionOverlay.classList.add("is-active");
-  showDetail(monsterId);
+  showFn();
 
   const startFadeOut = () => {
     transitionOverlay.classList.add("is-leaving");
@@ -165,9 +176,26 @@ MONSTERS.forEach((monster) => {
     </span>
     <span class="monster-card__name">${monster.name}</span>
   `;
-  card.addEventListener("click", () => playCardTransition(monster.id));
+  card.addEventListener("click", () => playCardTransition(() => showDetail(monster.id)));
   monsterGrid.appendChild(card);
 });
+
+// ヤミクマ本体（一覧とは独立したセクションに単体表示）
+const yamikumaStandalone = document.getElementById("yamikumaStandalone");
+const yamikumaCard = document.createElement("button");
+yamikumaCard.type = "button";
+yamikumaCard.className = "monster-card monster-card--yamikuma";
+yamikumaCard.dataset.id = YAMIKUMA.id;
+yamikumaCard.innerHTML = `
+  <span class="monster-card__tag">正体</span>
+  <span class="monster-card__thumb">
+    ${renderThumb({ kind: "main", monsterId: YAMIKUMA.id, alt: YAMIKUMA.name })}
+  </span>
+  <span class="monster-card__name">${YAMIKUMA.name}</span>
+`;
+yamikumaCard.addEventListener("click", () => playCardTransition(showYamikuma));
+yamikumaStandalone.appendChild(yamikumaCard);
+bindThumbFallbacks(yamikumaStandalone);
 
 bindThumbFallbacks(monsterGrid);
 
@@ -182,10 +210,14 @@ const anomalyGrid = document.getElementById("anomalyGrid");
 const backBtn = document.getElementById("backBtn");
 const tickerGroup = document.getElementById("tickerGroup");
 const headerEl = document.querySelector(".header");
+const yamikumaView = document.getElementById("yamikumaView");
+const yamikumaFigure = document.getElementById("yamikumaFigure");
 
 function showDetail(monsterId) {
   const monster = MONSTERS.find((m) => m.id === monsterId);
   if (!monster) return;
+
+  yamikumaView.hidden = true;
 
   detailName.textContent = monster.name;
 
@@ -247,8 +279,27 @@ function showDetail(monsterId) {
   window.scrollTo({ top: headerBottom, behavior: "smooth" });
 }
 
+function showYamikuma() {
+  detailView.hidden = true;
+
+  yamikumaFigure.innerHTML = renderThumb({
+    kind: "yamikuma",
+    monsterId: YAMIKUMA.id,
+    alt: YAMIKUMA.name
+  });
+  bindThumbFallbacks(yamikumaFigure);
+
+  gridView.hidden = true;
+  yamikumaView.hidden = false;
+  tickerGroup.hidden = true;
+  backBtn.hidden = false;
+  const headerBottom = headerEl.getBoundingClientRect().bottom + window.scrollY;
+  window.scrollTo({ top: headerBottom, behavior: "smooth" });
+}
+
 function showGrid() {
   detailView.hidden = true;
+  yamikumaView.hidden = true;
   gridView.hidden = false;
   tickerGroup.hidden = false;
   backBtn.hidden = true;

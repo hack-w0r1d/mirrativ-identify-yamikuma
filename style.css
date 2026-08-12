@@ -296,6 +296,52 @@ a, button { font-family: inherit; }
   .monster-card { transition: none; }
 }
 
+/* ヤミクマ本体（一覧とは独立した単体リンク） */
+.yamikuma-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 32px 0 20px;
+  color: var(--spirit);
+}
+
+.yamikuma-divider::before,
+.yamikuma-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--spirit), transparent);
+}
+
+.yamikuma-divider__label {
+  font-family: var(--font-label);
+  font-size: .74rem;
+  letter-spacing: .2em;
+  white-space: nowrap;
+}
+
+.yamikuma-standalone {
+  display: flex;
+  justify-content: center;
+}
+
+.monster-card--yamikuma {
+  width: 100%;
+  max-width: 240px;
+  border-color: var(--spirit);
+  box-shadow: 0 0 24px rgba(130, 87, 232, .35);
+}
+
+.monster-card--yamikuma:hover,
+.monster-card--yamikuma:focus-visible {
+  box-shadow: 0 10px 32px rgba(130, 87, 232, .5);
+}
+
+.monster-card--yamikuma .monster-card__tag {
+  color: var(--spirit);
+  opacity: 1;
+}
+
 /* ==========================================================
     詳細ビュー（異変状態）
     ========================================================== */
@@ -358,6 +404,62 @@ a, button { font-family: inherit; }
   max-width: 520px;
   color: var(--lilac);
   font-size: .88rem;
+}
+
+#yamikumaView {
+  min-height: 100vh;
+}
+
+.yamikuma-figure {
+  max-width: 260px;
+  margin: 0 auto 32px;
+}
+
+.yamikuma-figure svg,
+.yamikuma-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.yamikuma-stats {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--ink);
+  border: 1px solid var(--fur-line);
+  border-top: 3px solid var(--spirit);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.yamikuma-stats th,
+.yamikuma-stats td {
+  padding: 12px 8px;
+  text-align: center;
+  border-left: 1px solid var(--fur-line);
+}
+
+.yamikuma-stats th:first-child,
+.yamikuma-stats td:first-child {
+  border-left: none;
+}
+
+.yamikuma-stats th {
+  font-family: var(--font-label);
+  font-size: .74rem;
+  font-weight: 400;
+  letter-spacing: .08em;
+  color: var(--lilac);
+  border-bottom: 1px solid var(--fur-line);
+}
+
+.yamikuma-stats td {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--spirit);
 }
 
 .detail-section { margin-bottom: 40px; }
@@ -835,4 +937,7 @@ a, button { font-family: inherit; }
   .modal__compare-label { font-size: .68rem; }
 
   .ticker__item { font-size: .92rem; }
+
+  .yamikuma-stats th { font-size: .6rem; padding: 10px 4px; }
+  .yamikuma-stats td { font-size: 1rem; padding: 10px 4px; }
 }

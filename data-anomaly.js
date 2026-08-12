@@ -88,8 +88,8 @@ const ANOMALY_DATA = {
   ],
   m07: [
     {
-      note: "腕",
-      point: "腕が通常時と比べて長い。",
+      note: "翼",
+      point: "翼が通常時と比べて長い。",
       compareIndex: 1
     },
   ],
@@ -169,6 +169,13 @@ const ANOMALY_DATA = {
       note: "武装",
       point: "武装が折り紙になっている。",
       compareIndex: 1
+    },
+  ],
+  m20: [
+    {
+      note: "イノシシの耳",
+      point: "イノシシの耳が片耳倒れている。",
+      compareIndex: 2
     },
   ],
   m21: [
