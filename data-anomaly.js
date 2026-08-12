@@ -62,10 +62,27 @@ const ANOMALY_DATA = {
       compareIndex: 1
     },
   ],
+  m05: [
+    {
+      note: "マフラー",
+      point: "マフラーが通常時と比べて長い。",
+      compareIndex: 1
+    },
+    {
+      note: "マフラー",
+      point: "マフラーが通常時と比べて長い。",
+      compareIndex: 3
+    },
+  ],
   m06: [
     {
       note: "耳",
       point: "耳が通常時と比べて長い。",
+      compareIndex: 1
+    },
+    {
+      note: "尻尾",
+      point: "尻尾がない。",
       compareIndex: 1
     },
   ],
@@ -73,6 +90,13 @@ const ANOMALY_DATA = {
     {
       note: "腕",
       point: "腕が通常時と比べて長い。",
+      compareIndex: 1
+    },
+  ],
+  m08: [
+    {
+      note: "耳",
+      point: "耳が通常時と比べて平行。",
       compareIndex: 1
     },
   ],
@@ -113,6 +137,18 @@ const ANOMALY_DATA = {
     {
       note: "尻尾",
       point: "尻尾の数が通常時と比べて1つ少ない。",
+      compareIndex: 1
+    },
+  ],
+  m16: [
+    {
+      note: "尻尾",
+      point: "尻尾が通常時と比べて長い。",
+      compareIndex: 1
+    },
+    {
+      note: "耳",
+      point: "耳が通常時と比べて傾いている。",
       compareIndex: 1
     },
   ],
