@@ -43,13 +43,18 @@ const ANOMALY_DATA = {
   ],
   m02: [
     {
-      note: "サイズ",
-      point: "サイズが通常時と比べて小さい。",
+      note: "耳",
+      point: "耳が通常時と比べて垂れている。",
       compareIndex: 2
     },
     {
-      note: "耳",
-      point: "耳が通常時と比べて垂れている。",
+      note: "サイズ",
+      point: "サイズが通常時と比べて小さい。",
+      compareIndex: 1
+    },
+    {
+      note: "サイズ",
+      point: "サイズが通常時と比べて小さい。",
       compareIndex: 2
     },
   ],
@@ -124,8 +129,8 @@ const ANOMALY_DATA = {
   ],
   m12: [
     {
-      note: "子犬",
-      point: "子犬が脱走している。",
+      note: "ボム",
+      point: "頭の上のボムがない。",
       compareIndex: 1
     },
   ],
