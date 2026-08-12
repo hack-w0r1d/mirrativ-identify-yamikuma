@@ -264,9 +264,27 @@ const modal = document.getElementById("modal");
 const modalBody = document.getElementById("modalBody");
 const modalClose = document.getElementById("modalClose");
 let lastFocusedEl = null;
+let scrollLockY = 0;
+
+// モーダル表示中は背後の画面をスクロールさせない
+// （bodyをfixedにして現在位置を固定し、閉じたら元の位置へ戻す）
+function lockBackgroundScroll() {
+  scrollLockY = window.scrollY;
+  document.body.style.position = "fixed";
+  document.body.style.top = `-${scrollLockY}px`;
+  document.body.style.width = "100%";
+}
+
+function unlockBackgroundScroll() {
+  document.body.style.position = "";
+  document.body.style.top = "";
+  document.body.style.width = "";
+  window.scrollTo({ top: scrollLockY, left: 0, behavior: "instant" });
+}
 
 function openModal() {
   lastFocusedEl = document.activeElement;
+  lockBackgroundScroll();
   modal.hidden = false;
   modalClose.focus();
   document.addEventListener("keydown", onModalKeydown);
@@ -274,8 +292,9 @@ function openModal() {
 
 function closeModal() {
   modal.hidden = true;
+  unlockBackgroundScroll();
   document.removeEventListener("keydown", onModalKeydown);
-  if (lastFocusedEl) lastFocusedEl.focus();
+  if (lastFocusedEl) lastFocusedEl.focus({ preventScroll: true });
 }
 
 function onModalKeydown(e) {
