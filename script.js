@@ -181,6 +181,7 @@ const normalGrid = document.getElementById("normalGrid");
 const anomalyGrid = document.getElementById("anomalyGrid");
 const backBtn = document.getElementById("backBtn");
 const tickerGroup = document.getElementById("tickerGroup");
+const headerEl = document.querySelector(".header");
 
 function showDetail(monsterId) {
   const monster = MONSTERS.find((m) => m.id === monsterId);
@@ -241,15 +242,16 @@ function showDetail(monsterId) {
   gridView.hidden = true;
   detailView.hidden = false;
   tickerGroup.hidden = true;
-  backBtn.style.display = 'inline-flex';
-  detailView.scrollIntoView({ behavior: "smooth", block: "start" });
+  backBtn.hidden = false;
+  const headerBottom = headerEl.getBoundingClientRect().bottom + window.scrollY;
+  window.scrollTo({ top: headerBottom, behavior: "smooth" });
 }
 
 function showGrid() {
   detailView.hidden = true;
   gridView.hidden = false;
   tickerGroup.hidden = false;
-  backBtn.style.display = 'none';
+  backBtn.hidden = true;
   gridView.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
