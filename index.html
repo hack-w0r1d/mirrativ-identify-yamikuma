@@ -35,7 +35,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Antique&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=0.1.8">
+  <link rel="stylesheet" href="style.css?v=0.1.6">
 </head>
 <body>
 
@@ -183,9 +183,21 @@
 
   <div class="modal" id="modal" hidden>
     <div class="modal__backdrop" data-modal-close></div>
-    <div class="modal__panel" role="dialog" aria-modal="true">
-      <button type="button" class="modal__close" id="modalClose" aria-label="閉じる">×</button>
-      <div class="modal__body" id="modalBody"></div>
+    <div class="modal__panel-wrap" id="modalPanelWrap">
+      <div class="modal__panel" id="modalPanel" role="dialog" aria-modal="true">
+        <button type="button" class="modal__close" id="modalClose" aria-label="閉じる">×</button>
+        <div class="modal__viewport" id="modalViewport">
+          <div class="modal__track" id="modalTrack">
+            <div class="modal__body" id="modalBodyPrev" aria-hidden="true"></div>
+            <div class="modal__body" id="modalBody"></div>
+            <div class="modal__body" id="modalBodyNext" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal__nav">
+        <button type="button" class="modal__nav-btn modal__nav-btn--prev" id="modalPrevBtn" aria-label="前の画像へ" hidden>&lt;</button>
+        <button type="button" class="modal__nav-btn modal__nav-btn--next" id="modalNextBtn" aria-label="次の画像へ" hidden>&gt;</button>
+      </div>
     </div>
   </div>
 
@@ -199,9 +211,9 @@
     </svg>
   </div>
 
-  <script src="data-normal.js?v=0.1.8" defer></script>
-  <script src="data-anomaly.js?v=0.1.8" defer></script>
-  <script src="script.js?v=0.1.8" defer></script>
+  <script src="data-normal.js?v=0.1.6" defer></script>
+  <script src="data-anomaly.js?v=0.1.6" defer></script>
+  <script src="script.js?v=0.1.6" defer></script>
   <script src="url-change-notice.js?v=0.0.1"></script>
 </body>
 </html>

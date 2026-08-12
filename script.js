@@ -313,9 +313,18 @@ backBtn.addEventListener("click", showGrid);
 // ============================================================
 const modal = document.getElementById("modal");
 const modalBody = document.getElementById("modalBody");
+const modalBodyPrev = document.getElementById("modalBodyPrev");
+const modalBodyNext = document.getElementById("modalBodyNext");
 const modalClose = document.getElementById("modalClose");
+const modalViewport = document.getElementById("modalViewport");
+const modalTrack = document.getElementById("modalTrack");
+const modalPrevBtn = document.getElementById("modalPrevBtn");
+const modalNextBtn = document.getElementById("modalNextBtn");
 let lastFocusedEl = null;
 let scrollLockY = 0;
+// 現在モーダルに表示中の画像が、どのモンスターのどの状態（normal/anomaly）の
+// 何番目かを保持する。隣接画像へのナビゲーション（矢印ボタン／スワイプ）で使用。
+let modalNavState = null;
 
 // モーダル表示中は背後の画面をスクロールさせない
 // （bodyをfixedにして現在位置を固定し、閉じたら元の位置へ戻す）
@@ -346,6 +355,8 @@ function closeModal() {
   unlockBackgroundScroll();
   document.removeEventListener("keydown", onModalKeydown);
   if (lastFocusedEl) lastFocusedEl.focus({ preventScroll: true });
+  modalNavState = null;
+  updateModalNav();
 }
 
 function onModalKeydown(e) {
@@ -355,10 +366,10 @@ function onModalKeydown(e) {
 modalClose.addEventListener("click", closeModal);
 modal.querySelector("[data-modal-close]").addEventListener("click", closeModal);
 
-// 通常状態カード → 画像のみの拡大表示
-function openNormalModal(monster, index) {
+// 通常状態モーダルの中身を組み立てる（画像のみの拡大表示）
+function buildNormalModalBody(monster, index) {
   const entry = monster.normal[index - 1];
-  modalBody.innerHTML = `
+  return `
     <div class="modal__figure">
       ${renderThumb({
         kind: "normal",
@@ -370,15 +381,13 @@ function openNormalModal(monster, index) {
     </div>
     <p class="modal__caption">${monster.name}｜通常状態</p>
   `;
-  bindThumbFallbacks(modalBody);
-  openModal();
 }
 
-// 異変状態カード → 異変箇所＋通常/異変の比較画像＋判別ポイント
-function openAnomalyModal(monster, index) {
+// 異変状態モーダルの中身を組み立てる（異変箇所＋通常/異変の比較画像＋判別ポイント）
+function buildAnomalyModalBody(monster, index) {
   const entry = monster.anomalies[index - 1];
   const compareIndex = entry.compareIndex || 1;
-  modalBody.innerHTML = `
+  return `
     <p class="modal__eyebrow">異変箇所</p>
     <p class="modal__note">${entry.note}</p>
     <div class="modal__compare">
@@ -407,14 +416,149 @@ function openAnomalyModal(monster, index) {
     <p class="modal__eyebrow">判別ポイント</p>
     <p class="modal__point">${entry.point || "（未設定）"}</p>
   `;
-  bindThumbFallbacks(modalBody);
-  openModal();
 }
+
+function buildModalBodyHTML(kind, monster, index) {
+  return kind === "normal" ? buildNormalModalBody(monster, index) : buildAnomalyModalBody(monster, index);
+}
+
+// 通常状態カード → 画像のみの拡大表示（隣接画像へのナビゲーション対応）
+function openNormalModal(monster, index) {
+  const wasOpen = !modal.hidden;
+  modalNavState = { monster, kind: "normal", index, total: monster.normal.length };
+  renderModalTrack();
+  if (!wasOpen) openModal();
+}
+
+// 異変状態カード → 異変箇所＋通常/異変の比較画像＋判別ポイント（隣接画像へのナビゲーション対応）
+function openAnomalyModal(monster, index) {
+  const wasOpen = !modal.hidden;
+  modalNavState = { monster, kind: "anomaly", index, total: monster.anomalies.length };
+  renderModalTrack();
+  if (!wasOpen) openModal();
+}
+
+// ============================================================
+// 隣接画像へのナビゲーション（矢印ボタン／モーダルのドラッグ・スワイプ）
+// ============================================================
+let isTrackAnimating = false;
+let isDragging = false;
+let dragStartX = 0;
+let dragStartY = 0;
+let dragDeltaX = 0;
+const SWIPE_THRESHOLD = 60;
+
+// 現在の状態（normal/anomaly）内で前後に隣接する画像があるかに応じて
+// 矢印ボタンの表示・非表示を切り替える
+function updateModalNav() {
+  const hasPrev = !!modalNavState && modalNavState.index > 1;
+  const hasNext = !!modalNavState && modalNavState.index < modalNavState.total;
+  modalPrevBtn.hidden = !hasPrev;
+  modalNextBtn.hidden = !hasNext;
+}
+
+// トラック（prev/current/nextの3ペイン）の水平位置を指定する。
+// withTransitionがtrueならアニメーションしながら、falseなら即座に反映する
+function setTrackOffset(px, withTransition) {
+  modalTrack.style.transition = withTransition ? "transform .3s cubic-bezier(.22, .61, .36, 1)" : "none";
+  modalTrack.style.transform = `translateX(calc(-100% / 3 + ${px}px))`;
+}
+
+// modalNavStateに基づき、現在・前・次の3ペインを描画してトラックを中央位置にリセットする
+function renderModalTrack() {
+  if (!modalNavState) return;
+  const { monster, kind, index, total } = modalNavState;
+  modalBody.innerHTML = buildModalBodyHTML(kind, monster, index);
+  modalBodyPrev.innerHTML = index > 1 ? buildModalBodyHTML(kind, monster, index - 1) : "";
+  modalBodyNext.innerHTML = index < total ? buildModalBodyHTML(kind, monster, index + 1) : "";
+  bindThumbFallbacks(modalBody);
+  bindThumbFallbacks(modalBodyPrev);
+  bindThumbFallbacks(modalBodyNext);
+  updateModalNav();
+  setTrackOffset(0, false);
+}
+
+// direction: -1で前の画像へ、+1で次の画像へ。トラックをスライドさせてから中身を差し替える
+function settleTrack(direction) {
+  if (!modalNavState || isTrackAnimating) return;
+  const hasPrev = modalNavState.index > 1;
+  const hasNext = modalNavState.index < modalNavState.total;
+  if ((direction === 1 && !hasNext) || (direction === -1 && !hasPrev)) {
+    setTrackOffset(0, true);
+    return;
+  }
+  isTrackAnimating = true;
+  const viewportWidth = modalViewport.getBoundingClientRect().width || 0;
+  setTrackOffset(direction === 1 ? -viewportWidth : viewportWidth, true);
+  modalTrack.addEventListener(
+    "transitionend",
+    () => {
+      modalNavState.index += direction;
+      renderModalTrack();
+      isTrackAnimating = false;
+    },
+    { once: true }
+  );
+}
+
+function navigateModal(direction) {
+  settleTrack(direction);
+}
+
+modalPrevBtn.addEventListener("click", () => navigateModal(-1));
+modalNextBtn.addEventListener("click", () => navigateModal(1));
+
+// modal__panel上でのドラッグ・スワイプ（タッチ／マウス共通のPointer Eventsを使用）。
+// ドラッグ中は指の移動量ぶんだけトラックを即座に追従させ、離した時に閾値を
+// 超えていれば隣のペインへ、超えていなければ元の位置へスムーズに戻す。
+modalViewport.addEventListener("pointerdown", (e) => {
+  if (!modalNavState || isTrackAnimating) return;
+  isDragging = true;
+  dragStartX = e.clientX;
+  dragStartY = e.clientY;
+  dragDeltaX = 0;
+  modalViewport.setPointerCapture(e.pointerId);
+});
+
+modalViewport.addEventListener("pointermove", (e) => {
+  if (!isDragging) return;
+  let deltaX = e.clientX - dragStartX;
+  const deltaY = e.clientY - dragStartY;
+  if (Math.abs(deltaY) > Math.abs(deltaX)) return; // 縦方向の操作は無視する
+  const hasPrev = modalNavState.index > 1;
+  const hasNext = modalNavState.index < modalNavState.total;
+  if (deltaX > 0 && !hasPrev) deltaX *= 0.25; // 隣がない側は抵抗をかけて動きを鈍くする
+  if (deltaX < 0 && !hasNext) deltaX *= 0.25;
+  dragDeltaX = deltaX;
+  setTrackOffset(deltaX, false);
+});
+
+function finishDrag() {
+  if (!isDragging) return;
+  isDragging = false;
+  const deltaX = dragDeltaX;
+  dragDeltaX = 0;
+  if (deltaX <= -SWIPE_THRESHOLD) {
+    settleTrack(1);
+  } else if (deltaX >= SWIPE_THRESHOLD) {
+    settleTrack(-1);
+  } else {
+    setTrackOffset(0, true);
+  }
+}
+
+modalViewport.addEventListener("pointerup", finishDrag);
+modalViewport.addEventListener("pointercancel", finishDrag);
 
 // 情報提供する → お願い事項＋開発者Xリンク
 const reportBtn = document.getElementById("reportBtn");
 
 function openReportModal() {
+  modalNavState = null;
+  modalBodyPrev.innerHTML = "";
+  modalBodyNext.innerHTML = "";
+  updateModalNav();
+  setTrackOffset(0, false);
   modalBody.innerHTML = `
     <p class="modal__eyebrow">情報提供に関する留意事項</p>
     <ul class="modal__list">
