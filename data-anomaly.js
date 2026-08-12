@@ -62,6 +62,11 @@ const ANOMALY_DATA = {
   ],
   m04: [
     {
+      note: "髪の毛",
+      point: "髪の毛が通常時と比べて長い。",
+      compareIndex: 1
+    },
+    {
       note: "リボン",
       point: "リボンが通常時と比べて大きい。",
       compareIndex: 1
