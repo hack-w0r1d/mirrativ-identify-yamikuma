@@ -173,6 +173,11 @@ const ANOMALY_DATA = {
   ],
   m20: [
     {
+      note: "イノシシ",
+      point: "イノシシが反対側を向いている。",
+      compareIndex: 1
+    },
+    {
       note: "イノシシの耳",
       point: "イノシシの耳が片耳倒れている。",
       compareIndex: 2
