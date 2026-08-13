@@ -19,7 +19,7 @@
   var STORAGE_KEY = "ghn-url-notice-dismissed-v" + NOTICE_VERSION;
 
   // TODO: 実際のポストURLに置き換えてください
-  var X_POST_URL = "https://x.com/yu_cielkun/status/2087527545453576449?s=20";
+  var X_POST_URL = "https://x.com/yu_cielkun/status/2087860973000638822?s=20";
 
   var NOTICE_TITLE = "【重要】URL変更完了のお知らせ";
   var NOTICE_BODY =
