@@ -60,6 +60,11 @@ const ANOMALY_DATA = {
   ],
   m03: [
     {
+      note: "羽",
+      point: "羽がなくなっている。",
+      compareIndex: 2
+    },
+    {
       note: "サイズ",
       point: "サイズが通常時と比べて小さい。",
       compareIndex: 1
