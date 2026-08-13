@@ -126,6 +126,11 @@ const ANOMALY_DATA = {
       point: "杖の形が通常時と異なる。",
       compareIndex: 3
     },
+    {
+      note: "マント",
+      point: "ズボンが赤くなっている。",
+      compareIndex: 2
+    },
   ],
   m12: [
     {
@@ -207,6 +212,11 @@ const ANOMALY_DATA = {
     {
       note: "槍",
       point: "槍が通常時と比べて大きい。",
+      compareIndex: 1
+    },
+    {
+      note: "槍",
+      point: "槍を持っていない。",
       compareIndex: 1
     },
   ],

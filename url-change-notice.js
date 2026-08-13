@@ -21,15 +21,16 @@
     // TODO: 実際のポストURLに置き換えてください
     var X_POST_URL = "https://x.com/yu_cielkun/status/2087527545453576449?s=20";
 
-    var NOTICE_TITLE = "【重要】URL変更のお知らせ";
+    var NOTICE_TITLE = "【重要】URL変更完了のお知らせ";
     var NOTICE_BODY =
-      "<strong>2026年8月14日(土)0:00頃</strong>より、当サイトおよび公開中の各種ツールのURLが変更となります。<br>" +
-      "現在のURLへアクセスした場合でも、自動的に新しいURLへ転送される予定ですが、" +
-      "ブックマークや保存済みリンクをご利用の方は、新しいURLへ登録し直していただけますと幸いです。<br>" +
-      "※新しいURLは、変更完了後に改めてご案内いたします。<br>" +
+      "当サイトおよび公開中の各種ツールのURL変更が完了しました。<br>" +
+      "現在は新しいURLで公開されています。ブックマークや保存済みリンクをご利用の方は、" +
+      "新しいURLへ登録し直していただけますと幸いです。<br>" +
+      "旧URLへアクセスした場合は、自動的に新しいURLへ転送されます。<br>" +
       '<a href="' + X_POST_URL + '" target="_blank" rel="noopener noreferrer" class="ghn-link">' +
-      "<strong>詳しくはこちらのポスト</strong></a>に掲載しています。<br>" +
-      "ご不便をおかけしますが、ご理解とご協力をお願いいたします。";
+      "<strong>新しいURLはこちらのポスト</strong></a>に掲載しています。<br>" +
+      "こちらのお知らせは周知のため、約1週間掲載いたします。<br>" +
+      "今後ともよろしくお願いいたします。";
 
     var CSS = "" +
       ".ghn-overlay{" +
@@ -60,7 +61,7 @@
       "}" +
       ".ghn-close:hover,.ghn-close:focus-visible{background:#f1f1f1;color:#333;}" +
       ".ghn-reopen{" +
-      "position:fixed;top:0;right:0;z-index:2147483000;" +
+      "position:fixed;top:0vh;right:0;z-index:2147483000;" +
       "background:#d64545;color:#fff;border:none;" +
       "border-radius:8px 0 0 8px;padding:10px 12px;" +
       "font-size:14px;cursor:pointer;display:none;" +
@@ -90,7 +91,7 @@
       reopenBtn.type = "button";
       reopenBtn.className = "ghn-reopen";
       reopenBtn.setAttribute("aria-label", "URL変更のお知らせを開く");
-      reopenBtn.textContent = "重要なお知らせ";
+      reopenBtn.textContent = "URLを変更しました";
 
       document.body.appendChild(overlay);
       document.body.appendChild(reopenBtn);
