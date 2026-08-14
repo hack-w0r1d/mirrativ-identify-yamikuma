@@ -325,6 +325,9 @@ let scrollLockY = 0;
 // 現在モーダルに表示中の画像が、どのモンスターのどの状態（normal/anomaly）の
 // 何番目かを保持する。隣接画像へのナビゲーション（矢印ボタン／スワイプ）で使用。
 let modalNavState = null;
+// pair表示（比較画像の拡大）を閉じた際に、拡大前のモーダル（異変状態の比較表示）
+// へ戻れるように直前の状態を保持しておく
+let modalPreviousState = null;
 
 // モーダル表示中は背後の画面をスクロールさせない
 // （bodyをfixedにして現在位置を固定し、閉じたら元の位置へ戻す）
@@ -351,6 +354,12 @@ function openModal() {
 }
 
 function closeModal() {
+  if (modalPreviousState) {
+    modalNavState = modalPreviousState;
+    modalPreviousState = null;
+    renderModalTrack();
+    return;
+  }
   modal.hidden = true;
   unlockBackgroundScroll();
   document.removeEventListener("keydown", onModalKeydown);
@@ -393,24 +402,28 @@ function buildAnomalyModalBody(monster, index) {
     <div class="modal__compare">
       <div class="modal__compare-item">
         <span class="modal__compare-label">通常状態</span>
-        ${renderThumb({
-          kind: "normal",
-          monsterId: monster.id,
-          index: compareIndex,
-          color: monster.color,
-          alt: `${monster.name}（通常状態）`
-        })}
+        <button type="button" class="modal__compare-trigger" data-normal-index="${compareIndex}" data-anomaly-index="${index}" data-start="normal">
+          ${renderThumb({
+            kind: "normal",
+            monsterId: monster.id,
+            index: compareIndex,
+            color: monster.color,
+            alt: `${monster.name}（通常状態）`
+          })}
+        </button>
       </div>
       <div class="modal__compare-item">
         <span class="modal__compare-label">異変状態</span>
-        ${renderThumb({
-          kind: "anomaly",
-          monsterId: monster.id,
-          index,
-          color: monster.color,
-          possessed: true,
-          alt: `${monster.name}（異変状態）`
-        })}
+        <button type="button" class="modal__compare-trigger" data-normal-index="${compareIndex}" data-anomaly-index="${index}" data-start="anomalySolo">
+          ${renderThumb({
+            kind: "anomaly",
+            monsterId: monster.id,
+            index,
+            color: monster.color,
+            possessed: true,
+            alt: `${monster.name}（異変状態）`
+          })}
+        </button>
       </div>
     </div>
     <p class="modal__eyebrow">判別ポイント</p>
@@ -418,12 +431,33 @@ function buildAnomalyModalBody(monster, index) {
   `;
 }
 
+// 異変状態の画像のみを拡大表示する（通常状態⇔異変状態の切替ビュー用）
+function buildAnomalySoloModalBody(monster, index) {
+  const entry = monster.anomalies[index - 1];
+  return `
+    <div class="modal__figure">
+      ${renderThumb({
+        kind: "anomaly",
+        monsterId: monster.id,
+        index,
+        color: monster.color,
+        possessed: true,
+        alt: `${monster.name}（異変状態・${entry.label}）`
+      })}
+    </div>
+    <p class="modal__caption">${monster.name}｜異変状態</p>
+  `;
+}
+
 function buildModalBodyHTML(kind, monster, index) {
-  return kind === "normal" ? buildNormalModalBody(monster, index) : buildAnomalyModalBody(monster, index);
+  if (kind === "normal") return buildNormalModalBody(monster, index);
+  if (kind === "anomalySolo") return buildAnomalySoloModalBody(monster, index);
+  return buildAnomalyModalBody(monster, index);
 }
 
 // 通常状態カード → 画像のみの拡大表示（隣接画像へのナビゲーション対応）
 function openNormalModal(monster, index) {
+  modalPreviousState = null;
   const wasOpen = !modal.hidden;
   modalNavState = { monster, kind: "normal", index, total: monster.normal.length };
   renderModalTrack();
@@ -432,10 +466,34 @@ function openNormalModal(monster, index) {
 
 // 異変状態カード → 異変箇所＋通常/異変の比較画像＋判別ポイント（隣接画像へのナビゲーション対応）
 function openAnomalyModal(monster, index) {
+  modalPreviousState = null;
   const wasOpen = !modal.hidden;
   modalNavState = { monster, kind: "anomaly", index, total: monster.anomalies.length };
   renderModalTrack();
   if (!wasOpen) openModal();
+}
+
+// 異変状態モーダル内の比較画像クリック → 通常状態⇔異変状態の2枚のみを
+// 拡大表示し、その2枚の間だけ横スワイプ/矢印で切り替えられるようにする
+function openPairModal(monster, normalIndex, anomalyIndex, startKind) {
+  const items = [
+    { kind: "normal", index: normalIndex },
+    { kind: "anomalySolo", index: anomalyIndex }
+  ];
+  modalPreviousState = modalNavState;
+  const wasOpen = !modal.hidden;
+  modalNavState = { monster, kind: "pair", index: startKind === "anomalySolo" ? 2 : 1, total: items.length, items };
+  renderModalTrack();
+  if (!wasOpen) openModal();
+}
+
+// modal__compare内の画像クリックにopenPairModalを紐付ける
+function bindCompareTriggers(root, monster) {
+  root.querySelectorAll(".modal__compare-trigger").forEach((btn) => {
+    btn.addEventListener("click", () =>
+      openPairModal(monster, Number(btn.dataset.normalIndex), Number(btn.dataset.anomalyIndex), btn.dataset.start)
+    );
+  });
 }
 
 // ============================================================
@@ -467,13 +525,18 @@ function setTrackOffset(px, withTransition) {
 // modalNavStateに基づき、現在・前・次の3ペインを描画してトラックを中央位置にリセットする
 function renderModalTrack() {
   if (!modalNavState) return;
-  const { monster, kind, index, total } = modalNavState;
-  modalBody.innerHTML = buildModalBodyHTML(kind, monster, index);
-  modalBodyPrev.innerHTML = index > 1 ? buildModalBodyHTML(kind, monster, index - 1) : "";
-  modalBodyNext.innerHTML = index < total ? buildModalBodyHTML(kind, monster, index + 1) : "";
+  const { monster, kind, index, total, items } = modalNavState;
+  const bodyFor = (i) =>
+    kind === "pair" ? buildModalBodyHTML(items[i - 1].kind, monster, items[i - 1].index) : buildModalBodyHTML(kind, monster, i);
+  modalBody.innerHTML = bodyFor(index);
+  modalBodyPrev.innerHTML = index > 1 ? bodyFor(index - 1) : "";
+  modalBodyNext.innerHTML = index < total ? bodyFor(index + 1) : "";
   bindThumbFallbacks(modalBody);
   bindThumbFallbacks(modalBodyPrev);
   bindThumbFallbacks(modalBodyNext);
+  bindCompareTriggers(modalBody, monster);
+  bindCompareTriggers(modalBodyPrev, monster);
+  bindCompareTriggers(modalBodyNext, monster);
   updateModalNav();
   setTrackOffset(0, false);
 }
@@ -555,6 +618,7 @@ const reportBtn = document.getElementById("reportBtn");
 
 function openReportModal() {
   modalNavState = null;
+  modalPreviousState = null;
   modalBodyPrev.innerHTML = "";
   modalBodyNext.innerHTML = "";
   updateModalNav();

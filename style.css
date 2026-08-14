@@ -698,6 +698,7 @@ a, button { font-family: inherit; }
   font-size: 1.2rem;
   line-height: 1;
   cursor: pointer;
+  z-index: 2;
 }
 
 .modal__close:hover { border-color: var(--wisp); color: var(--wisp); }
@@ -789,6 +790,15 @@ a, button { font-family: inherit; }
 }
 
 .modal__compare-item { text-align: center; }
+
+.modal__compare-trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
 
 .modal__compare-label {
   display: block;
