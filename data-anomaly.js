@@ -113,7 +113,7 @@ const ANOMALY_DATA = {
     {
       note: "尻尾",
       point: "尻尾がない。",
-      compareIndex: 1
+      compareIndex: 3
     },
   ],
   m07: [
