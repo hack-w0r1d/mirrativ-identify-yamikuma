@@ -98,6 +98,11 @@ const ANOMALY_DATA = {
       point: "マフラーが通常時と比べて長い。",
       compareIndex: 3
     },
+    {
+      note: "尻尾",
+      point: "尻尾が通常時と比べて大きい。",
+      compareIndex: 3
+    },
   ],
   m06: [
     {
@@ -173,6 +178,11 @@ const ANOMALY_DATA = {
       note: "尻尾",
       point: "尻尾の数が通常時と比べて1つ少ない。",
       compareIndex: 1
+    },
+    {
+      note: "サイズ",
+      point: "サイズが通常時と比べて大きい。",
+      compareIndex: 2
     },
   ],
   m16: [
