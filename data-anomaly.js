@@ -45,7 +45,7 @@ const ANOMALY_DATA = {
     {
       note: "耳",
       point: "耳が通常時と比べて垂れている。",
-      compareIndex: 2
+      compareIndex: 3
     },
     {
       note: "サイズ",
@@ -55,12 +55,12 @@ const ANOMALY_DATA = {
     {
       note: "サイズ",
       point: "サイズが通常時と比べて小さい。",
-      compareIndex: 1
+      compareIndex: 2
     },
     {
       note: "サイズ",
       point: "サイズが通常時と比べて小さい。",
-      compareIndex: 2
+      compareIndex: 3
     },
   ],
   m03: [
