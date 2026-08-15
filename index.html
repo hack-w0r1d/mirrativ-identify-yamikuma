@@ -37,7 +37,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Antique&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=0.3.3">
+  <link rel="stylesheet" href="style.css?v=0.3.4">
 </head>
 <body>
 
@@ -117,6 +117,10 @@
         <h3 class="detail-section__title">異変状態</h3>
         <div class="anomaly-grid" id="anomalyGrid"></div>
       </section>
+
+      <div class="back-link-row">
+        <button type="button" class="back-link">一覧に戻る<span aria-hidden="true">↩︎</span></button>
+      </div>
     </section>
 
     <!-- ============ 詳細ビュー（ヤミクマ本体） ============ -->
@@ -161,13 +165,13 @@
           </tr>
         </tbody>
       </table>
+
+      <div class="back-link-row">
+        <button type="button" class="back-link">一覧に戻る<span aria-hidden="true">↩︎</span></button>
+      </div>
     </section>
 
   </main>
-
-  <button type="button" class="back-link" id="backBtn" hidden>
-    一覧へ<span aria-hidden="true">↩︎</span>
-  </button>
 
   <footer class="footer">
     <nav class="footer__links">
@@ -211,9 +215,9 @@
     </svg>
   </div>
 
-  <script src="data-normal.js?v=0.3.3" defer></script>
-  <script src="data-anomaly.js?v=0.3.3" defer></script>
-  <script src="script.js?v=0.3.3" defer></script>
+  <script src="data-normal.js?v=0.3.4" defer></script>
+  <script src="data-anomaly.js?v=0.3.4" defer></script>
+  <script src="script.js?v=0.3.4" defer></script>
   <script src="url-change-notice.js?v=0.0.3"></script>
 </body>
 </html>

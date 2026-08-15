@@ -207,7 +207,7 @@ const detailView = document.getElementById("detailView");
 const detailName = document.getElementById("detailName");
 const normalGrid = document.getElementById("normalGrid");
 const anomalyGrid = document.getElementById("anomalyGrid");
-const backBtn = document.getElementById("backBtn");
+const backLinks = document.querySelectorAll(".back-link");
 const tickerGroup = document.getElementById("tickerGroup");
 const headerEl = document.querySelector(".header");
 const yamikumaView = document.getElementById("yamikumaView");
@@ -274,7 +274,6 @@ function showDetail(monsterId) {
   gridView.hidden = true;
   detailView.hidden = false;
   tickerGroup.hidden = true;
-  backBtn.hidden = false;
   const headerBottom = headerEl.getBoundingClientRect().bottom + window.scrollY;
   window.scrollTo({ top: headerBottom, behavior: "smooth" });
 }
@@ -292,7 +291,6 @@ function showYamikuma() {
   gridView.hidden = true;
   yamikumaView.hidden = false;
   tickerGroup.hidden = true;
-  backBtn.hidden = false;
   const headerBottom = headerEl.getBoundingClientRect().bottom + window.scrollY;
   window.scrollTo({ top: headerBottom, behavior: "smooth" });
 }
@@ -302,11 +300,10 @@ function showGrid() {
   yamikumaView.hidden = true;
   gridView.hidden = false;
   tickerGroup.hidden = false;
-  backBtn.hidden = true;
   gridView.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-backBtn.addEventListener("click", showGrid);
+backLinks.forEach((btn) => btn.addEventListener("click", showGrid));
 
 // ============================================================
 // 拡大画像モーダル

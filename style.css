@@ -350,14 +350,17 @@ a, button { font-family: inherit; }
   .view--detail { animation: none; }
 }
 
+.back-link-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 32px;
+  margin-right: 8px;
+}
+
 .back-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 40;
   padding: 8px 14px;
   background: var(--ink);
   border: 1px solid var(--fur-line);
@@ -365,13 +368,10 @@ a, button { font-family: inherit; }
   color: var(--lilac);
   font-size: .86rem;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, .35);
   transition: border-color .15s ease, color .15s ease;
 }
 
 .back-link:hover { border-color: var(--wisp); color: var(--wisp); }
-
-.back-link[hidden] { display: none; }
 
 .detail-head {
   text-align: center;
