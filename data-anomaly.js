@@ -113,12 +113,17 @@ const ANOMALY_DATA = {
     {
       note: "耳",
       point: "耳が通常時と比べて長い。",
-      compareIndex: 1
+      compareIndex: 3
+    },
+    {
+      note: "耳",
+      point: "耳が通常時と比べて長い。",
+      compareIndex: 4
     },
     {
       note: "尻尾",
       point: "尻尾がない。",
-      compareIndex: 3
+      compareIndex: 4
     },
   ],
   m07: [
@@ -254,12 +259,12 @@ const ANOMALY_DATA = {
     {
       note: "槍",
       point: "槍が通常時と比べて大きい。",
-      compareIndex: 1
+      compareIndex: 2
     },
     {
       note: "槍",
       point: "槍を持っていない。",
-      compareIndex: 1
+      compareIndex: 2
     },
   ],
   m22: [
