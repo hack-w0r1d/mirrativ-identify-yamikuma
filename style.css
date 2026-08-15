@@ -203,18 +203,10 @@ a, button { font-family: inherit; }
 
 .briefing__icon { color: var(--spirit); flex-shrink: 0; }
 
-.briefing-note {
-  margin-top: 28px;
-  color: var(--lilac);
-  opacity: .65;
-  font-size: .82rem;
-  text-align: center;
-}
-
 .report-btn {
   display: block;
   width: fit-content;
-  margin: 18px auto 0;
+  margin: 25px auto 0;
   padding: 11px 26px;
   background: var(--spirit);
   border: none;
