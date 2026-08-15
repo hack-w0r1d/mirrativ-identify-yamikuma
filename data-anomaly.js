@@ -274,6 +274,11 @@ const ANOMALY_DATA = {
       compareIndex: 2
     },
     {
+      note: "ドレス",
+      point: "ドレスが通常時と比べて長い。",
+      compareIndex: 3
+    },
+    {
       note: "サイズ",
       point: "サイズが通常時と比べて大きい。",
       compareIndex: 1
