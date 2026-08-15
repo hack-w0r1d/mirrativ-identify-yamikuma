@@ -220,6 +220,11 @@ const ANOMALY_DATA = {
       point: "弓の向きが通常時と比べて逆向きになっている。",
       compareIndex: 1
     },
+    {
+      note: "弓",
+      point: "弓の向きが通常時と比べて逆向きになっている。",
+      compareIndex: 1
+    },
   ],
   m19: [
     {
