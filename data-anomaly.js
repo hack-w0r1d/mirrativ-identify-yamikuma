@@ -40,6 +40,11 @@ const ANOMALY_DATA = {
       point: "体が変色している。",
       compareIndex: 1
     },
+    {
+      note: "色",
+      point: "体が変色している。",
+      compareIndex: 1
+    },
   ],
   m02: [
     {
