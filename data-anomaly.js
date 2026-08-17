@@ -199,6 +199,11 @@ const ANOMALY_DATA = {
       point: "槍の形が骨になっている。",
       compareIndex: 2
     },
+    {
+      note: "検証中",
+      point: "検証中",
+      compareIndex: 1
+    },
   ],
   m15: [
     {
