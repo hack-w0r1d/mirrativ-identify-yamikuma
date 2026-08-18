@@ -142,6 +142,11 @@ const ANOMALY_DATA = {
       point: "翼が通常時と比べて長い。",
       compareIndex: 2
     },
+    {
+      note: "シマエナガ",
+      point: "背中のシマエナガが通常時と比べて大きい。",
+      compareIndex: 2
+    },
   ],
   m08: [
     {
