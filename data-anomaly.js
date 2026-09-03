@@ -263,10 +263,15 @@ const ANOMALY_DATA = {
     {
       note: "尻尾",
       point: "尻尾が通常時と比べて長い。",
-      compareIndex: 2
+      compareIndex: 3
     },
   ],
   m17: [
+    {
+      note: "目",
+      point: "目が > < になっている。",
+      compareIndex: 1
+    },
     {
       note: "弓",
       point: "弓の向きが通常時と比べて逆向きになっている。",
