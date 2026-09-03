@@ -191,7 +191,7 @@ const ANOMALY_DATA = {
       compareIndex: 3
     },
     {
-      note: "マント",
+      note: "ズボン",
       point: "ズボンが赤くなっている。",
       compareIndex: 2
     },
