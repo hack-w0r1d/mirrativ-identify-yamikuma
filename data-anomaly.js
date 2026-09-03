@@ -175,7 +175,7 @@ const ANOMALY_DATA = {
   m10: [
     {
       note: "尻尾",
-      point: "尻尾が通常時と比べて長い。",
+      point: "尻尾が通常時と比べて長い。<br>画面下に尻尾がはみ出るかどうかで判別可能。",
       compareIndex: 1
     },
   ],
@@ -227,8 +227,13 @@ const ANOMALY_DATA = {
       compareIndex: 2
     },
     {
-      note: "検証中",
-      point: "検証中",
+      note: "サイズ",
+      point: "通常時と比べてわずかにスリム。<br>単体での判別は難しいので消去法がおすすめ。",
+      compareIndex: 1
+    },
+    {
+      note: "サイズ",
+      point: "通常時と比べてわずかにスリム。<br>単体での判別は難しいので消去法がおすすめ。",
       compareIndex: 1
     },
   ],
