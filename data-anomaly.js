@@ -72,17 +72,17 @@ const ANOMALY_DATA = {
     {
       note: "羽",
       point: "羽がなくなっている。",
-      compareIndex: 1
+      compareIndex: 2
     },
     {
       note: "羽",
       point: "羽がなくなっている。",
-      compareIndex: 2
+      compareIndex: 1
     },
     {
       note: "サイズ",
       point: "サイズが通常時と比べて小さい。",
-      compareIndex: 1
+      compareIndex: 2
     },
   ],
   m04: [
@@ -193,12 +193,17 @@ const ANOMALY_DATA = {
     {
       note: "杖",
       point: "杖の形が通常時と異なる。",
-      compareIndex: 3
+      compareIndex: 2
     },
     {
-      note: "ズボン",
-      point: "ズボンが赤くなっている。",
+      note: "帽子・ズボン",
+      point: "クラウンの先が通常時よりとがっている。<br>ズボンが赤くなっている。",
       compareIndex: 2
+    },
+    {
+      note: "杖",
+      point: "杖の形が通常時と異なる。",
+      compareIndex: 3
     },
   ],
   m12: [
@@ -223,6 +228,11 @@ const ANOMALY_DATA = {
       note: "サイズ",
       point: "サイズが通常時と比べて大きい。",
       compareIndex: 1
+    },
+    {
+      note: "サイズ",
+      point: "サイズが通常時と比べて大きい。",
+      compareIndex: 2
     },
   ],
   m14: [
