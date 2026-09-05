@@ -181,6 +181,16 @@ const ANOMALY_DATA = {
       point: "武器が棍棒から剣になっている。",
       compareIndex: 3
     },
+    {
+      note: "武器",
+      point: "武器が通常時より小さい。",
+      compareIndex: 3
+    },
+    {
+      note: "武器",
+      point: "武器が通常時より小さい。",
+      compareIndex: 3
+    },
   ],
   m10: [
     {
@@ -378,8 +388,8 @@ const ANOMALY_DATA = {
       compareIndex: 3
     },
     {
-      note: "クジラ",
-      point: "クジラのサイズが通常時と比べて小さい。",
+      note: "サイズ",
+      point: "サイズが通常時と比べて大きい。",
       compareIndex: 1
     },
   ],
