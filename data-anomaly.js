@@ -203,22 +203,22 @@ const ANOMALY_DATA = {
     {
       note: "杖",
       point: "杖の形が通常時と異なる。",
-      compareIndex: 1
-    },
-    {
-      note: "杖",
-      point: "杖の形が通常時と異なる。",
-      compareIndex: 2
-    },
-    {
-      note: "帽子・ズボン",
-      point: "クラウンの先が通常時よりとがっている。<br>ズボンが赤くなっている。",
       compareIndex: 2
     },
     {
       note: "杖",
       point: "杖の形が通常時と異なる。",
       compareIndex: 3
+    },
+    {
+      note: "帽子・ズボン",
+      point: "クラウンの先が通常時よりとがっている。<br>ズボンが赤くなっている。",
+      compareIndex: 3
+    },
+    {
+      note: "杖",
+      point: "杖の形が通常時と異なる。",
+      compareIndex: 4
     },
   ],
   m12: [
