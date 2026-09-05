@@ -303,6 +303,11 @@ const ANOMALY_DATA = {
       compareIndex: 1
     },
     {
+      note: "目",
+      point: "目が > < になっている。",
+      compareIndex: 1
+    },
+    {
       note: "弓",
       point: "弓の向きが通常時と比べて逆向きになっている。",
       compareIndex: 1
