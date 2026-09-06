@@ -245,12 +245,12 @@ const ANOMALY_DATA = {
     {
       note: "ボム",
       point: "頭の上のボムがない。",
-      compareIndex: 1
+      compareIndex: 2
     },
     {
       note: "耳",
       point: "プルドッグの耳がぺしゃんこになっている。",
-      compareIndex: 1
+      compareIndex: 2
     },
   ],
   m13: [
@@ -289,11 +289,6 @@ const ANOMALY_DATA = {
   ],
   m15: [
     {
-      note: "尻尾",
-      point: "尻尾の数が通常時と比べて1つ少ない。",
-      compareIndex: 2
-    },
-    {
       note: "サイズ",
       point: "サイズが通常時と比べて大きい。",
       compareIndex: 1
@@ -302,6 +297,16 @@ const ANOMALY_DATA = {
       note: "サイズ",
       point: "サイズが通常時と比べて大きい。",
       compareIndex: 3
+    },
+    {
+      note: "尻尾",
+      point: "尻尾の数が通常時と比べて1つ少ない。",
+      compareIndex: 3
+    },
+    {
+      note: "尻尾",
+      point: "尻尾の数が通常時と比べて1つ少ない。",
+      compareIndex: 2
     },
   ],
   m16: [
@@ -328,19 +333,19 @@ const ANOMALY_DATA = {
       compareIndex: 1
     },
     {
-      note: "弓",
-      point: "弓の向きが通常時と比べて逆向きになっている。",
-      compareIndex: 1
-    },
-    {
       note: "目",
       point: "目が > < になっている。",
-      compareIndex: 1
+      compareIndex: 2
     },
     {
       note: "弓",
       point: "弓の向きが通常時と比べて逆向きになっている。",
       compareIndex: 1
+    },
+    {
+      note: "弓",
+      point: "弓の向きが通常時と比べて逆向きになっている。",
+      compareIndex: 2
     },
   ],
   m18: [

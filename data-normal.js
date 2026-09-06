@@ -61,6 +61,9 @@ const NORMAL_EXTRA = {
     { label: "参考C" },
     { label: "参考D" },
   ],
+  m12: [
+    { label: "参考B" },
+  ],
   m13: [
     { label: "参考B" },
   ],
@@ -77,6 +80,7 @@ const NORMAL_EXTRA = {
   ],
   m17: [
     { label: "参考B" },
+    { label: "参考C" },
   ],
   m19: [
     { label: "参考B" },
