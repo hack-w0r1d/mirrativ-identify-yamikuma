@@ -48,16 +48,6 @@ const ANOMALY_DATA = {
   ],
   m02: [
     {
-      note: "耳",
-      point: "耳が通常時と比べて垂れている。",
-      compareIndex: 2
-    },
-    {
-      note: "耳",
-      point: "耳が通常時と比べて垂れている。",
-      compareIndex: 3
-    },
-    {
       note: "サイズ",
       point: "サイズが通常時と比べて小さい。",
       compareIndex: 1
@@ -70,6 +60,16 @@ const ANOMALY_DATA = {
     {
       note: "サイズ",
       point: "サイズが通常時と比べて小さい。",
+      compareIndex: 3
+    },
+    {
+      note: "耳",
+      point: "耳が通常時と比べて垂れている。",
+      compareIndex: 2
+    },
+    {
+      note: "耳",
+      point: "耳が通常時と比べて垂れている。",
       compareIndex: 3
     },
   ],
@@ -94,12 +94,17 @@ const ANOMALY_DATA = {
     {
       note: "髪の毛",
       point: "髪の毛が通常時と比べて長い。",
-      compareIndex: 1
+      compareIndex: 2
     },
     {
       note: "リボン",
       point: "リボンが通常時と比べて大きい。",
       compareIndex: 1
+    },
+    {
+      note: "リボン",
+      point: "リボンが通常時と比べて大きい。",
+      compareIndex: 2
     },
   ],
   m05: [
@@ -174,6 +179,11 @@ const ANOMALY_DATA = {
       point: "尻尾がない。",
       compareIndex: 1
     },
+    {
+      note: "尻尾",
+      point: "尻尾がない。",
+      compareIndex: 1
+    },
   ],
   m09: [
     {
@@ -201,7 +211,7 @@ const ANOMALY_DATA = {
     {
       note: "尻尾",
       point: "尻尾が通常時と比べて長い。<br>画面下に尻尾がはみ出るかどうかで判別可能。",
-      compareIndex: 1
+      compareIndex: 2
     },
   ],
   m11: [
