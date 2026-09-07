@@ -403,6 +403,11 @@ const ANOMALY_DATA = {
     {
       note: "槍",
       point: "槍を持っていない。",
+      compareIndex: 1
+    },
+    {
+      note: "槍",
+      point: "槍を持っていない。",
       compareIndex: 2
     },
   ],
