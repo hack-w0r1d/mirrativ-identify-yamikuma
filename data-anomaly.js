@@ -301,7 +301,7 @@ const ANOMALY_DATA = {
     {
       note: "サイズ",
       point: "サイズが通常時と比べて大きい。",
-      compareIndex: 3
+      compareIndex: 1
     },
     {
       note: "尻尾",
@@ -311,12 +311,12 @@ const ANOMALY_DATA = {
     {
       note: "尻尾",
       point: "尻尾の数が通常時と比べて1つ少ない。",
-      compareIndex: 3
+      compareIndex: 1
     },
     {
       note: "尻尾",
       point: "尻尾の数が通常時と比べて1つ少ない。",
-      compareIndex: 2
+      compareIndex: 1
     },
   ],
   m16: [
