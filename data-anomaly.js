@@ -209,7 +209,7 @@ const ANOMALY_DATA = {
     {
       note: "武器",
       point: "武器が通常時より小さい。",
-      compareIndex: 3
+      compareIndex: 4
     },
   ],
   m10: [
