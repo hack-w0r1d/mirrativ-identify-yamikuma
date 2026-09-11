@@ -440,14 +440,19 @@ const ANOMALY_DATA = {
   ],
   m23: [
     {
-      note: "砲口",
-      point: "クジラの砲口がなくなっている。",
-      compareIndex: 2
+      note: "サイズ",
+      point: "クジラのサイズが小さくなっている。",
+      compareIndex: 1
     },
     {
       note: "サイズ",
       point: "クジラのサイズが小さくなっている。",
-      compareIndex: 1
+      compareIndex: 2
+    },
+    {
+      note: "砲口",
+      point: "クジラの砲口がなくなっている。",
+      compareIndex: 2
     },
   ],
 };
