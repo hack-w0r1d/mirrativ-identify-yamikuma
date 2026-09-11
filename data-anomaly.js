@@ -182,12 +182,17 @@ const ANOMALY_DATA = {
     {
       note: "耳",
       point: "耳が通常時と比べて平行。",
-      compareIndex: 2
+      compareIndex: 3
     },
     {
       note: "尻尾",
       point: "尻尾がない。",
       compareIndex: 1
+    },
+    {
+      note: "尻尾",
+      point: "尻尾がない。",
+      compareIndex: 2
     },
   ],
   m09: [
