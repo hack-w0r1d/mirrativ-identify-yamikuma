@@ -391,9 +391,14 @@ const ANOMALY_DATA = {
       point: "槍が通常時と比べて短い。",
       compareIndex: 1
     },
+    {
+      note: "槍",
+      point: "槍が通常時と比べて短い。",
+      compareIndex: 2
+    },
         {
-      note: "武装",
-      point: "武装が折り紙になっている。",
+      note: "武具",
+      point: "武具が折り紙になっている。",
       compareIndex: 1
     },
   ],
