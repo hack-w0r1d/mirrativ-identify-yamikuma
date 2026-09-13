@@ -65,6 +65,11 @@ const ANOMALY_DATA = {
     {
       note: "耳",
       point: "耳が通常時と比べて垂れている。",
+      compareIndex: 1
+    },
+    {
+      note: "耳",
+      point: "耳が通常時と比べて垂れている。",
       compareIndex: 2
     },
     {
