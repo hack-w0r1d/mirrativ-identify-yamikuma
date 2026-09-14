@@ -389,6 +389,11 @@ const ANOMALY_DATA = {
       point: "舌が通常時と比べて長い。",
       compareIndex: 1
     },
+    {
+      note: "舌",
+      point: "舌が通常時と比べて長い。",
+      compareIndex: 2
+    },
   ],
   m19: [
     {
