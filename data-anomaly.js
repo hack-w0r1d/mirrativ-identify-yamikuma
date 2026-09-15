@@ -309,6 +309,11 @@ const ANOMALY_DATA = {
     {
       note: "槍",
       point: "槍の形が骨になっている。",
+      compareIndex: 1
+    },
+    {
+      note: "槍",
+      point: "槍の形が骨になっている。",
       compareIndex: 2
     },
   ],
@@ -349,6 +354,11 @@ const ANOMALY_DATA = {
       note: "耳",
       point: "耳が通常時と比べて傾いている。",
       compareIndex: 2
+    },
+    {
+      note: "耳",
+      point: "耳が通常時と比べて傾いている。",
+      compareIndex: 3
     },
     {
       note: "尻尾",
@@ -411,10 +421,15 @@ const ANOMALY_DATA = {
       point: "槍が通常時と比べて短い。",
       compareIndex: 2
     },
-        {
+    {
       note: "武具",
       point: "武具が折り紙になっている。",
       compareIndex: 1
+    },
+    {
+      note: "武具",
+      point: "武具が折り紙になっている。",
+      compareIndex: 2
     },
   ],
   m20: [
