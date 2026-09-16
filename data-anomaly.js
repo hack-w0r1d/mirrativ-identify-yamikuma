@@ -185,6 +185,11 @@ const ANOMALY_DATA = {
     {
       note: "シマエナガ",
       point: "背中のシマエナガが通常時と比べて大きい。",
+      compareIndex: 1
+    },
+    {
+      note: "シマエナガ",
+      point: "背中のシマエナガが通常時と比べて大きい。",
       compareIndex: 2
     },
   ],
@@ -235,9 +240,24 @@ const ANOMALY_DATA = {
   m10: [
     {
       note: "サイズ",
+      point: "サイズが通常時と比べて大きい。<br>頭がヒントの枠線に重なるかどうかで判別可能。",
+      compareIndex: 1
+    },
+    {
+      note: "サイズ",
       point: "サイズが通常時と比べて大きい。<br>画面下に尻尾がはみ出るかどうかで判別可能。",
       compareIndex: 3
     },
+    // {
+    //   note: "サイズ",
+    //   point: "サイズが通常時と比べて大きい。",
+    //   compareIndex: 3
+    // },
+    // {
+    //   note: "サイズ",
+    //   point: "サイズが通常時と比べて大きい。",
+    //   compareIndex: 3
+    // },
   ],
   m11: [
     {
@@ -402,12 +422,12 @@ const ANOMALY_DATA = {
     {
       note: "舌",
       point: "舌が通常時と比べて長い。",
-      compareIndex: 1
+      compareIndex: 2
     },
     {
       note: "舌",
       point: "舌が通常時と比べて長い。",
-      compareIndex: 2
+      compareIndex: 3
     },
   ],
   m19: [
