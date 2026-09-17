@@ -346,7 +346,7 @@ const ANOMALY_DATA = {
     {
       note: "サイズ",
       point: "サイズが通常時と比べて大きい。",
-      compareIndex: 1
+      compareIndex: 3
     },
     {
       note: "尻尾",
@@ -356,12 +356,12 @@ const ANOMALY_DATA = {
     {
       note: "尻尾",
       point: "尻尾の数が通常時と比べて1つ少ない。",
-      compareIndex: 1
+      compareIndex: 3
     },
     {
       note: "尻尾",
       point: "尻尾の数が通常時と比べて1つ少ない。",
-      compareIndex: 1
+      compareIndex: 2
     },
   ],
   m16: [
@@ -435,6 +435,11 @@ const ANOMALY_DATA = {
       note: "槍",
       point: "槍が通常時と比べて短い。",
       compareIndex: 1
+    },
+    {
+      note: "槍",
+      point: "槍が通常時と比べて短い。<br>持ち手の短さで判別可能。",
+      compareIndex: 3
     },
     {
       note: "槍",
