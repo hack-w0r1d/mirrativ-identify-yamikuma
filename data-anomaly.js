@@ -175,6 +175,11 @@ const ANOMALY_DATA = {
     {
       note: "翼",
       point: "翼が通常時と比べて長い。",
+      compareIndex: 1
+    },
+    {
+      note: "翼",
+      point: "翼が通常時と比べて長い。",
       compareIndex: 2
     },
     {
