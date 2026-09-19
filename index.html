@@ -37,8 +37,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Antique&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=1.0.0">
-  <link rel="stylesheet" href="game.css?v=1.0.0">
+  <link rel="stylesheet" href="style.css?v=1.0.1">
+  <link rel="stylesheet" href="game.css?v=1.0.1">
 </head>
 <body>
 
@@ -56,7 +56,7 @@
   <div class="ticker-group" id="tickerGroup">
     <div class="ticker ticker--danger" role="note">
       <div class="ticker__track">
-        <span class="ticker__item">新コンテンツ「判別ゲーム」を公開しました！　ヤミクマの憑依を君は見抜けるか！？　隙間時間でぜひ遊んでみてね！</span>
+        <span class="ticker__item">新コンテンツ「ヤミクマ判別ゲーム」を公開しました！　ヤミクマの憑依を君は見抜けるか！？　隙間時間でぜひ遊んでみてね！</span>
       </div>
     </div>
   </div>
@@ -66,14 +66,14 @@
     <!-- ============ 一覧ビュー ============ -->
     <section class="view view--grid" id="gridView">
 
-      <!-- 判別ゲームの入口：data-game-open を付けた要素ならどこへ移動してもOK -->
+      <!-- ヤミクマ判別ゲームの入口：data-game-open を付けた要素ならどこへ移動してもOK -->
       <button type="button" class="game-entry" data-game-open>
         <span class="game-entry__symbols" aria-hidden="true">
           <svg class="sym-normal" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>
           <svg class="sym-anomaly" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3L22 19H2Z"/></svg>
         </span>
         <span class="game-entry__text">
-          <span class="game-entry__title">判別ゲーム<span class="game-entry__badge">NEW</span></span>
+          <span class="game-entry__title">ヤミクマ判別ゲーム<span class="game-entry__badge">NEW</span></span>
           <span class="game-entry__desc">通常状態 or 異変状態、君は見抜けるか？</span>
         </span>
         <span class="game-entry__arrow" aria-hidden="true">›</span>
@@ -199,8 +199,8 @@
     <p>Created by Ciel'N</p>
   </footer>
 
-  <!-- ============ 判別ゲーム（全画面） ============ -->
-  <div class="game" id="game" role="dialog" aria-modal="true" aria-label="判別ゲーム" hidden>
+  <!-- ============ ヤミクマ判別ゲーム（全画面） ============ -->
+  <div class="game" id="game" role="dialog" aria-modal="true" aria-label="ヤミクマ判別ゲーム" hidden>
 
     <!-- スタート画面 -->
     <section class="game__screen game__screen--start" id="gameStart">
@@ -215,7 +215,7 @@
             <path fill="currentColor" d="M4.4 29 L11.4 29 L7.9 23 Z"/>
           </svg>
         </span>
-        <h2 class="game-start__title">判別ゲーム</h2>
+        <h2 class="game-start__title">ヤミクマ判別ゲーム</h2>
         <p class="game-start__lead">モンスターの画像が「通常状態」か「異変状態」かを見抜け。</p>
 
         <!-- 前回のデータが残っているとき -->
@@ -332,9 +332,9 @@
     </svg>
   </div>
 
-  <script src="data-normal.js?v=1.0.0" defer></script>
-  <script src="data-anomaly.js?v=1.0.0" defer></script>
-  <script src="script.js?v=1.0.0" defer></script>
-  <script src="game.js?v=1.0.0" defer></script>
+  <script src="data-normal.js?v=1.0.1" defer></script>
+  <script src="data-anomaly.js?v=1.0.1" defer></script>
+  <script src="script.js?v=1.0.1" defer></script>
+  <script src="game.js?v=1.0.1" defer></script>
 </body>
 </html>
