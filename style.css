@@ -985,18 +985,6 @@ a, button { font-family: inherit; }
 
 .sub-page__section a { color: var(--wisp); }
 
-#backToTop {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity .25s ease, visibility .25s ease;
-}
-
-#backToTop.is-hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
 /* ==========================================================
     スマホレイアウト（一覧・詳細とも3グリッド固定）
     ========================================================== */

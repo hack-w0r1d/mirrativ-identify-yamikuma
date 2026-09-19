@@ -300,7 +300,7 @@ function showGrid() {
   yamikumaView.hidden = true;
   gridView.hidden = false;
   tickerGroup.hidden = false;
-  gridView.scrollIntoView({ behavior: "smooth", block: "start" });
+  gridView.querySelector(".briefing").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 backLinks.forEach((btn) => btn.addEventListener("click", showGrid));

@@ -37,7 +37,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Antique&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=0.8.1">
+  <link rel="stylesheet" href="style.css?v=1.0.0">
+  <link rel="stylesheet" href="game.css?v=1.0.0">
 </head>
 <body>
 
@@ -55,7 +56,7 @@
   <div class="ticker-group" id="tickerGroup">
     <div class="ticker ticker--danger" role="note">
       <div class="ticker__track">
-        <span class="ticker__item">スラコロVol.100お疲れ様でした！現在新しいコンテンツを製作中です...</span>
+        <span class="ticker__item">新コンテンツ「判別ゲーム」を公開しました！　ヤミクマの憑依を君は見抜けるか！？　隙間時間でぜひ遊んでみてね！</span>
       </div>
     </div>
   </div>
@@ -64,6 +65,19 @@
 
     <!-- ============ 一覧ビュー ============ -->
     <section class="view view--grid" id="gridView">
+
+      <!-- 判別ゲームの入口：data-game-open を付けた要素ならどこへ移動してもOK -->
+      <button type="button" class="game-entry" data-game-open>
+        <span class="game-entry__symbols" aria-hidden="true">
+          <svg class="sym-normal" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>
+          <svg class="sym-anomaly" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3L22 19H2Z"/></svg>
+        </span>
+        <span class="game-entry__text">
+          <span class="game-entry__title">判別ゲーム<span class="game-entry__badge">NEW</span></span>
+          <span class="game-entry__desc">通常状態 or 異変状態、君は見抜けるか？</span>
+        </span>
+        <span class="game-entry__arrow" aria-hidden="true">›</span>
+      </button>
 
       <p class="briefing">
         <span class="briefing__icon" aria-hidden="true">
@@ -185,6 +199,109 @@
     <p>Created by Ciel'N</p>
   </footer>
 
+  <!-- ============ 判別ゲーム（全画面） ============ -->
+  <div class="game" id="game" role="dialog" aria-modal="true" aria-label="判別ゲーム" hidden>
+
+    <!-- スタート画面 -->
+    <section class="game__screen game__screen--start" id="gameStart">
+      <button type="button" class="game__close" id="gameStartClose" aria-label="閉じる">×</button>
+      <div class="game-start">
+        <span class="game-start__emblem" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="40" height="40">
+            <path fill-rule="evenodd" fill="currentColor" d="M29.5 20 A9.5 9.5 0 1 0 10.5 20 A9.5 9.5 0 1 0 29.5 20 Z M26.1 20 A6.1 6.1 0 1 0 13.9 20 A6.1 6.1 0 1 0 26.1 20 Z"/>
+            <circle cx="20" cy="20" r="2.7" fill="currentColor"/>
+            <path fill="currentColor" d="M20 2 L23.5 8 L16.5 8 Z"/>
+            <path fill="currentColor" d="M35.6 29 L28.6 29 L32.1 23 Z"/>
+            <path fill="currentColor" d="M4.4 29 L11.4 29 L7.9 23 Z"/>
+          </svg>
+        </span>
+        <h2 class="game-start__title">判別ゲーム</h2>
+        <p class="game-start__lead">モンスターの画像が「通常状態」か「異変状態」かを見抜け。</p>
+
+        <!-- 前回のデータが残っているとき -->
+        <div class="game-resume" id="gameResume" hidden>
+          <p class="game-resume__text">以前のプレイデータが残っています。<br>続きから再開しますか？</p>
+          <p class="game-resume__meta" id="gameResumeMeta"></p>
+          <div class="game-resume__actions">
+            <button type="button" class="game-btn game-btn--primary" id="gameResumeBtn">続きから再開</button>
+            <button type="button" class="game-btn game-btn--ghost" id="gameNewBtn">新しく始める</button>
+          </div>
+        </div>
+
+        <!-- 問題数の選択（デフォルト5問） -->
+        <div class="game-setup" id="gameSetup">
+          <div class="game-count" role="radiogroup" aria-labelledby="gameCountLabel">
+            <p class="game-count__label" id="gameCountLabel">問題数</p>
+            <div class="game-count__options">
+              <label class="game-count__option"><input type="radio" name="gameCount" value="5" checked><span>5問</span></label>
+              <label class="game-count__option"><input type="radio" name="gameCount" value="10"><span>10問</span></label>
+            </div>
+          </div>
+          <ul class="game-rules">
+            <li><svg class="sym-normal" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>左にスワイプ（または左のボタン）＝ 通常状態</li>
+            <li><svg class="sym-anomaly" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3L22 19H2Z"/></svg>右にスワイプ（または右のボタン）＝ 異変状態</li>
+          </ul>
+          <button type="button" class="game-btn game-btn--primary" id="gameStartBtn">スタート</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- プレイ画面 -->
+    <section class="game__screen game__screen--play" id="gamePlay" hidden>
+      <header class="game-bar">
+        <button type="button" class="game__close" id="gamePlayClose" aria-label="中断して閉じる（続きから再開できます）">×</button>
+        <p class="game-bar__count" id="gameCount" aria-live="polite">1 / 5</p>
+      </header>
+      <div class="game-progress" aria-hidden="true"><div class="game-progress__bar" id="gameProgressBar"></div></div>
+
+      <div class="game-stage" id="gameStage">
+        <div class="game-card is-back" id="gameCardB">
+          <div class="game-card__figure"></div>
+          <span class="game-stamp game-stamp--anomaly" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3L22 19H2Z"/></svg>異変</span>
+          <span class="game-stamp game-stamp--normal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>通常</span>
+        </div>
+        <div class="game-card is-front" id="gameCardA">
+          <div class="game-card__figure"></div>
+          <span class="game-stamp game-stamp--anomaly" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3L22 19H2Z"/></svg>異変</span>
+          <span class="game-stamp game-stamp--normal" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>通常</span>
+        </div>
+      </div>
+
+      <div class="game-actions">
+        <button type="button" class="game-answer game-answer--normal" id="answerNormal">
+          <span class="game-answer__disc"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg></span>
+          通常状態
+        </button>
+        <button type="button" class="game-answer game-answer--anomaly" id="answerAnomaly">
+          <span class="game-answer__disc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3L22 19H2Z"/></svg></span>
+          異変状態
+        </button>
+      </div>
+      <p class="game-hint">
+        <span class="game-hint__side">
+          ← 左スワイプで<svg class="sym-normal" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>通常
+        </span>
+        <span class="game-hint__side">
+          <svg class="sym-anomaly" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3L22 19H2Z"/></svg>異変は右スワイプ →
+        </span>
+      </p>
+    </section>
+
+    <!-- 成績画面 -->
+    <section class="game__screen game__screen--result" id="gameResult" hidden>
+      <div class="game-result">
+        <h2 class="game-result__title">RESULT</h2>
+        <p class="game-result__score" id="gameScore"></p>
+        <ol class="game-result__list" id="gameResultList"></ol>
+        <div class="game-result__actions">
+          <button type="button" class="game-btn game-btn--primary" id="gameRetryBtn">もう一度あそぶ</button>
+          <button type="button" class="game-btn game-btn--ghost" id="gameResultClose">一覧に戻る</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
   <div class="modal" id="modal" hidden>
     <div class="modal__backdrop" data-modal-close></div>
     <div class="modal__panel-wrap" id="modalPanelWrap">
@@ -215,8 +332,9 @@
     </svg>
   </div>
 
-  <script src="data-normal.js?v=0.8.1" defer></script>
-  <script src="data-anomaly.js?v=0.8.1" defer></script>
-  <script src="script.js?v=0.8.1" defer></script>
+  <script src="data-normal.js?v=1.0.0" defer></script>
+  <script src="data-anomaly.js?v=1.0.0" defer></script>
+  <script src="script.js?v=1.0.0" defer></script>
+  <script src="game.js?v=1.0.0" defer></script>
 </body>
 </html>

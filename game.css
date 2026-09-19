@@ -1,0 +1,670 @@
+/* ==========================================================
+    判別ゲーム（style.css のトークン --spirit / --lilac などを利用）
+    ========================================================== */
+
+/* ゲーム表示中は背後のページをスクロールさせない */
+html.is-game-open,
+html.is-game-open body { overflow: hidden; }
+
+/* ----------------------------------------------------------
+    トップページの入口ボタン（data-game-open）
+    ---------------------------------------------------------- */
+.game-entry {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  margin: 0 0 20px;
+  padding: 14px 18px;
+  background: linear-gradient(120deg, rgba(130, 87, 232, .3), var(--ink) 70%);
+  border: 1px solid var(--spirit);
+  border-radius: 6px;
+  box-shadow: 0 0 22px rgba(130, 87, 232, .25);
+  color: var(--bone);
+  text-align: left;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.game-entry:hover,
+.game-entry:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(130, 87, 232, .4);
+}
+
+.game-entry__symbols {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.game-entry__symbols svg { width: 20px; height: 20px; fill: currentColor; }
+
+.game-entry__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.game-entry__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.game-entry__badge {
+  padding: 1px 9px;
+  background: var(--wisp);
+  border-radius: 999px;
+  color: var(--void);
+  font-family: var(--font-label);
+  font-size: .64rem;
+  letter-spacing: .1em;
+}
+
+.game-entry__desc {
+  color: var(--lilac);
+  font-size: .8rem;
+}
+
+.game-entry__arrow {
+  color: var(--lilac);
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-entry { transition: none; }
+}
+
+/* 通常状態（丸）／異変状態（三角）の記号色：詳細ページのセクション見出しと揃える */
+.sym-normal { color: var(--lilac); }
+.sym-anomaly { color: var(--spirit); }
+
+/* ----------------------------------------------------------
+    全画面オーバーレイ
+    ---------------------------------------------------------- */
+.game {
+  position: fixed;
+  inset: 0;
+  z-index: 50; /* モーダル(100)より下、画面遷移オーバーレイ(60)より下 */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background:
+    radial-gradient(120% 60% at 50% -10%, rgba(130, 87, 232, .28), transparent 65%),
+    var(--void);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.game[hidden],
+.game__screen[hidden] { display: none; }
+
+.game__screen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.game__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--fur-line);
+  background: var(--ink);
+  color: var(--lilac);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.game__close:hover { border-color: var(--wisp); color: var(--wisp); }
+
+/* ----------------------------------------------------------
+    共通ボタン
+    ---------------------------------------------------------- */
+.game-btn {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 13px 20px;
+  border: 1px solid var(--spirit);
+  border-radius: 999px;
+  font-size: .94rem;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+
+.game-btn--primary { background: var(--spirit); color: #fff; }
+.game-btn--primary:hover { background: var(--spirit-deep); }
+
+.game-btn--ghost {
+  background: transparent;
+  border-color: var(--fur-line);
+  color: var(--lilac);
+}
+
+.game-btn--ghost:hover { border-color: var(--wisp); color: var(--wisp); }
+
+/* ----------------------------------------------------------
+    スタート画面
+    ---------------------------------------------------------- */
+.game-start {
+  width: 100%;
+  max-width: 420px;
+  margin: auto;
+  padding: 72px 24px 48px;
+  text-align: center;
+}
+
+.game-start__emblem {
+  display: inline-flex;
+  color: var(--spirit);
+  filter: drop-shadow(0 0 10px rgba(130, 87, 232, .6));
+}
+
+.game-start__title {
+  margin: 8px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 7vw, 2.4rem);
+  text-shadow: 0 0 18px rgba(130, 87, 232, .6);
+}
+
+.game-start__lead {
+  margin: 12px 0 28px;
+  color: var(--lilac);
+  font-size: .92rem;
+}
+
+.game-resume {
+  margin-bottom: 8px;
+  padding: 22px 18px;
+  background: var(--ink);
+  border: 1px solid var(--spirit);
+  border-radius: 8px;
+}
+
+.game-resume__text {
+  margin: 0;
+  font-weight: 700;
+  font-size: .96rem;
+}
+
+.game-resume__meta {
+  margin: 8px 0 20px;
+  color: var(--lilac);
+  font-size: .84rem;
+}
+
+.game-resume__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.game-count__label {
+  margin: 0 0 10px;
+  font-family: var(--font-label);
+  font-size: .8rem;
+  letter-spacing: .12em;
+  color: var(--lilac);
+}
+
+.game-count__options {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.game-count__option { position: relative; }
+
+/* ラジオボタン本体は見えなくして、隣の span をボタンとして見せる（キーボード操作は維持） */
+.game-count__option input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.game-count__option span {
+  display: block;
+  min-width: 104px;
+  padding: 12px 0;
+  background: var(--ink);
+  border: 1px solid var(--fur-line);
+  border-radius: 999px;
+  font-weight: 700;
+  transition: background .15s ease, border-color .15s ease;
+}
+
+.game-count__option input:checked + span {
+  background: var(--spirit);
+  border-color: var(--spirit);
+  color: #fff;
+}
+
+.game-count__option input:focus-visible + span {
+  outline: 2px solid var(--wisp);
+  outline-offset: 3px;
+}
+
+.game-rules {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 28px 0 32px;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+  font-size: .9rem;
+}
+
+.game-rules li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.game-rules svg { width: 18px; height: 18px; flex-shrink: 0; fill: currentColor; }
+
+/* ----------------------------------------------------------
+    プレイ画面
+    ---------------------------------------------------------- */
+.game__screen--play {
+  --card-max-h: 520px; /* カードの最大高さ（.game-stage の基準サイズにも使う） */
+  --card-peek: 9px; /* 奥のカード（.game-card.is-back）が手前のカードの下端からのぞく量。translateY(14px) と --back-scale で決まる */
+  --card-max-w: 400px; /* カードの最大幅 */
+  --side-pad: 20px; /* カードの左右の余白 */
+  --back-scale: .94; /* 奥のカードの縮小率（game.js の setBackProgress の 0.94 と揃える） */
+  /* 奥のカードの幅。選択ボタンの位置とスワイプ説明の幅の基準。
+     ※ 100% は使う側の要素の幅（＝この画面の幅）に対する割合になるので、左右paddingの無い要素で使うこと */
+  --back-w: calc(min(100% - 2 * var(--side-pad), var(--card-max-w)) * var(--back-scale));
+  --btn-w: 72px; /* 選択ボタン1つの幅（丸ボタン68pxより広く） */
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.game-bar {
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  align-items: center;
+  padding: 12px 14px 8px;
+}
+
+.game-bar .game__close {
+  position: static;
+  grid-column: 1;
+}
+
+.game-bar__count {
+  grid-column: 2;
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: .1em;
+}
+
+.game-progress {
+  height: 3px;
+  margin: 0 14px;
+  background: var(--fur-line);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.game-progress__bar {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--spirit-deep), var(--spirit));
+  transition: width .3s ease;
+}
+
+/* .game__screen--play の縦の余りは、margin:auto を持つ次の4か所で等分される。
+     ① 進捗線とカードの間（.game-stage の上）
+     ② カード（奥のカードののぞき分を含む下端）と選択ボタンの間（.game-actions の上）
+     ③ 選択ボタンと説明文の間（.game-hint の上）
+     ④ 説明文とページ下端の間（.game-hint の下）
+   各間隔の固定分（--stage-pt / --stage-pb ＋ .game-actions・.game-hint の padding）を
+   そろえてあるので、余りがあるときは4つの間隔が同じ大きさになる。
+   画面が低くて余りが0のときは、カードのほうが縮む */
+.game-stage {
+  --stage-pt: 20px; /* ①の固定分 */
+  --stage-pb: calc(12px + var(--card-peek)); /* ②の固定分。のぞき分だけ広げ、奥のカードの下端から測って12px＋.game-actions の上padding 8px ＝ 20px にする */
+  flex: 0 1 calc(var(--card-max-h) + var(--stage-pt) + var(--stage-pb));
+  min-height: 0;
+  margin-top: auto;
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  place-items: center;
+  padding: var(--stage-pt) var(--side-pad) var(--stage-pb);
+  touch-action: none; /* 縦横どちらの指の動きもブラウザのスクロールに奪わせない */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.game-card {
+  grid-area: 1 / 1; /* 2枚のカードを同じ位置に重ねる */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(100%, var(--card-max-w));
+  height: 100%;
+  max-height: var(--card-max-h);
+  padding: 14px;
+  background: linear-gradient(180deg, var(--ink-soft), var(--ink));
+  border: 1px solid var(--spirit);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .5), 0 0 30px rgba(130, 87, 232, .18);
+  transform-origin: 50% 85%;
+  will-change: transform;
+  cursor: grab;
+}
+
+.game-card.is-front { z-index: 2; }
+
+.game-card.is-back {
+  z-index: 1;
+  transform: translateY(14px) scale(var(--back-scale));
+  opacity: .55;
+  pointer-events: none;
+}
+
+.game-card.is-empty { visibility: hidden; }
+
+.game-stage.is-dragging .game-card.is-front { cursor: grabbing; }
+
+/* 図枠：上に画像、その下（画像と下枠の間）にモンスター名 */
+.game-card__figure {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, .28);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.game-card__image {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  container-type: size; /* 名前の位置計算で、この枠の幅・高さ（cqw / cqh）を使うため */
+}
+
+/* 画像・SVGはポインター操作を受けない（PCでの画像ドラッグ開始を防ぎ、カード側で受ける） */
+.game-card__image img,
+.game-card__image svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+/* モンスター名：画像（contain表示）の下にできる余白の、上下中央に置く。
+   --img-ratio（実画像の 幅/高さ）は game.js が入れる。読み込み前は正方形として計算する */
+.game-card__name {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 14px; /* cq単位に非対応のブラウザ用 */
+  bottom: calc((100cqh - min(100cqh, 100cqw / var(--img-ratio, 1))) / 4);
+  transform: translateY(50%);
+  margin: 0;
+  padding: 0 12px;
+  text-align: center;
+  font-weight: 700;
+  font-size: .98rem;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, .9); /* 余白が狭く画像に重なっても読めるように */
+  pointer-events: none;
+}
+
+/* スワイプ中に浮かぶ「通常／異変」のスタンプ */
+.game-stamp {
+  position: absolute;
+  top: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 10px;
+  background: rgba(11, 10, 16, .78);
+  border: 3px solid currentColor;
+  border-radius: 10px;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: .08em;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .1s linear;
+}
+
+.game-stamp svg { width: 1.1em; height: 1.1em; fill: currentColor; }
+
+.game-stamp--anomaly { left: 20px; color: var(--spirit); transform: rotate(-12deg); }
+.game-stamp--normal { right: 20px; color: var(--lilac); transform: rotate(12deg); }
+
+/* 2つのボタンの中心が、奥のカードの幅を3等分した 1/3・2/3 の位置に来るようにする。
+   （中心どうしの距離 ＝ 奥のカード幅 ÷ 3 ＝ ボタン幅 ＋ gap） */
+.game-actions {
+  display: flex;
+  justify-content: center;
+  gap: max(0px, calc(var(--back-w) / 3 - var(--btn-w)));
+  margin-top: auto;
+  padding: 8px 0 0;
+}
+
+.game-answer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: var(--btn-w);
+  white-space: nowrap;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--bone);
+  font-size: .82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.game-answer__disc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 68px;
+  background: var(--ink);
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.game-answer__disc svg { width: 28px; height: 28px; fill: currentColor; }
+
+.game-answer--normal .game-answer__disc { color: var(--lilac); }
+.game-answer--anomaly .game-answer__disc { color: var(--spirit); }
+
+.game-answer:hover .game-answer__disc,
+.game-answer:focus-visible .game-answer__disc { box-shadow: 0 0 18px currentColor; }
+
+.game-answer:active .game-answer__disc { transform: scale(.92); }
+
+/* 奥のカードと同じ幅にして、左の説明を左端・右の説明を右端へ寄せる（矢印の先がカードの横端あたりに来る） */
+.game-hint {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: var(--back-w);
+  margin: auto; /* 上下 auto ＝ ③と④、左右 auto ＝ 中央寄せ */
+  padding: 20px 0 max(20px, env(safe-area-inset-bottom)); /* 上20px＝③の固定分、下20px＝④の固定分 */
+  color: var(--lilac);
+  font-size: min(.78rem, 3.4vw); /* 狭い画面でも2つの説明が収まるように */
+  opacity: .85;
+}
+
+.game-hint__side {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.game-hint svg {
+  width: 11px;
+  height: 11px;
+  margin: 0 2px;
+  vertical-align: -1px;
+  fill: currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-progress__bar,
+  .game-stamp,
+  .game-answer__disc { transition: none; }
+}
+
+/* ----------------------------------------------------------
+    成績画面
+    ---------------------------------------------------------- */
+.game-result {
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 48px 20px 64px;
+}
+
+.game-result__title {
+  margin: 0 0 20px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: .06em;
+}
+
+.game-result__score {
+  margin: 0 0 28px;
+  padding: 16px 12px;
+  background: var(--ink);
+  border: 1px solid var(--fur-line);
+  border-top: 3px solid var(--spirit);
+  border-radius: 4px;
+  text-align: center;
+  font-weight: 700;
+  font-size: .98rem;
+}
+
+.game-result__score strong {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--spirit);
+}
+
+.game-result__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 0 32px;
+  padding: 0;
+  list-style: none;
+}
+
+.game-result__item {
+  display: grid;
+  grid-template-columns: 2.4em minmax(0, 1fr) 1.6em 3.4em;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--ink);
+  border: 1px solid var(--fur-line);
+  border-radius: 4px;
+  font-size: .92rem;
+}
+
+.game-result__no {
+  font-family: var(--font-label);
+  font-size: .8rem;
+  letter-spacing: .06em;
+  color: var(--lilac);
+}
+
+.game-result__label { overflow-wrap: anywhere; }
+
+.game-result__mark {
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.game-result__mark--ok { color: var(--wisp); }
+.game-result__mark--ng { color: #e2531f; }
+
+.game-result__explain {
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--wisp);
+  font-size: .88rem;
+  text-align: right;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.game-result__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ----------------------------------------------------------
+    スマホ・低い画面
+    ---------------------------------------------------------- */
+@media (max-width: 640px) {
+  /* カードの高さは今まで通り（上下の余白の合計44pxは同じ）。カードの位置だけを調整して、
+     ①進捗線との間 と ②選択ボタンとの間（奥のカードののぞき分を含む下端から測る）を同じにする。
+     ② ＝ pb − peek ＋ .game-actions の上padding 8px ＝ 22.5 − 9 ＋ 8 ＝ 21.5px ＝ ① */
+  .game__screen--play { --side-pad: 16px; }
+  .game-stage {
+    --stage-pt: 21.5px;
+    --stage-pb: calc(var(--stage-pt) + var(--card-peek) - 8px);
+  }
+  .game-hint { padding: 12px 0 max(18px, env(safe-area-inset-bottom)); }
+  .game-stamp { top: 18px; font-size: 1.05rem; }
+  .game-stamp--anomaly { left: 14px; }
+  .game-stamp--normal { right: 14px; }
+  .game-answer__disc { width: 60px; height: 60px; }
+  .game-answer__disc svg { width: 24px; height: 24px; }
+  .game-result__item { gap: 8px; padding: 10px 12px; font-size: .86rem; }
+}
+
+@media (max-height: 560px) {
+  .game-answer__disc { width: 48px; height: 48px; }
+  .game-hint { display: none; }
+}
