@@ -644,6 +644,85 @@ html.is-game-open body { overflow: hidden; }
 }
 
 /* ----------------------------------------------------------
+    成績画面のアニメーション
+    ① RESULT タイトル → ② スコア枠（正解数・正答率は非表示）
+    → ③ 正解数・正答率がバンッと出る → ④ 各問題が上から順に流れて表示
+    → ⑤ 全件表示後にボタンがゆっくり出る
+    ・成績画面が display:none から表示に切り替わるたびに最初から再生される
+    ・ここで動かしている値以外の見た目は、上の通常のスタイルのまま
+    ・各問題の順番 --i は game.js（buildResultRow）、問題数 --rs-count は showResult が設定する
+    ---------------------------------------------------------- */
+.game-result {
+  --rs-title-dur: .4s;
+  --rs-score-delay: .5s;    /* スコア枠が出るまで */
+  --rs-score-dur: .4s;
+  --rs-bang-delay: 1.2s;    /* 正解数・正答率がバンッと出るまで */
+  --rs-bang-dur: .45s;
+  --rs-list-delay: 1.7s;    /* 1問目が出始めるまで */
+  --rs-step: .1s;           /* 次の問題が出始めるまでの間隔 */
+  --rs-item-dur: .35s;
+  --rs-actions-gap: .1s;    /* 最後の問題が出終わってからボタンが出始めるまで */
+  --rs-actions-dur: .9s;
+}
+
+.game-result__title {
+  animation: result-fade var(--rs-title-dur) ease-out backwards;
+}
+
+.game-result__score {
+  animation: result-fade var(--rs-score-dur) ease-out var(--rs-score-delay) backwards;
+}
+
+/* transform を効かせるため inline-block にする（正解数・正答率の2か所とも） */
+.game-result__score strong {
+  display: inline-block;
+  animation: result-bang var(--rs-bang-dur) ease-out var(--rs-bang-delay) backwards;
+}
+
+.game-result__item {
+  animation: result-flow var(--rs-item-dur) ease-out
+    calc(var(--rs-list-delay) + var(--i, 0) * var(--rs-step)) backwards;
+}
+
+.game-result__actions {
+  animation: result-fade var(--rs-actions-dur) ease
+    calc(var(--rs-list-delay) + (var(--rs-count, 10) - 1) * var(--rs-step) + var(--rs-item-dur) + var(--rs-actions-gap))
+    backwards;
+}
+
+@keyframes result-fade {
+  from { opacity: 0; }
+}
+
+@keyframes result-bang {
+  0% {
+    opacity: 0;
+    transform: scale(2.4);
+    text-shadow: 0 0 0 rgba(130, 87, 232, 0);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(.9);
+    text-shadow: 0 0 16px rgba(130, 87, 232, .9);
+  }
+}
+
+@keyframes result-flow {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-result__title,
+  .game-result__score,
+  .game-result__score strong,
+  .game-result__item,
+  .game-result__actions { animation: none; }
+}
+
+/* ----------------------------------------------------------
     スマホ・低い画面
     ---------------------------------------------------------- */
 @media (max-width: 640px) {

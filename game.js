@@ -420,7 +420,7 @@
         : `${monster.name}の${monster.anomalies[question.index - 1].note}`;
     const ok = choice === question.kind;
     return `
-      <li class="game-result__item">
+      <li class="game-result__item" style="--i: ${i}">
         <span class="game-result__no">Q${i + 1}</span>
         <span class="game-result__label">${label}</span>
         <span class="game-result__mark game-result__mark--${ok ? "ok" : "ng"}" aria-label="${ok ? "正解" : "不正解"}">${ok ? "○" : "×"}</span>
@@ -435,6 +435,7 @@
     const rate = ((correct / total) * 100).toFixed(1);
     scoreEl.innerHTML = `正解数 <strong>${correct}</strong> / ${total} 問中　正答率 <strong>${rate}</strong> %`;
     resultList.innerHTML = questions.map((q, i) => buildResultRow(q, answers[i], i)).join("");
+    screens.result.style.setProperty("--rs-count", String(total)); // ボタンを出すタイミング（全件表示後）の計算用
     showScreen("result");
   }
 
