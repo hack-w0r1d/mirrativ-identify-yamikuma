@@ -5,7 +5,7 @@
 // 「通常状態（左スワイプ）」か「異変状態（右スワイプ）」かを当てるゲーム。
 //
 // script.js で定義済みの MONSTERS / renderThumb / bindThumbFallbacks /
-// prefersReducedMotion と、モーダル関連（modal / modalNavState /
+// prefersReducedMotion / playCardTransition と、モーダル関連（modal / modalNavState /
 // modalPreviousState / renderModalTrack / openModal）を利用するため、
 // script.js より後に読み込むこと。
 //
@@ -286,7 +286,7 @@
     const count = QUESTION_COUNTS.includes(total) ? total : QUESTION_COUNTS[0];
     clearProgress(); // 前回の中断データは新規開始で破棄する
     session = { total: count, questions: buildQuestions(count), answers: [], locked: false };
-    beginPlay();
+    playCardTransition(beginPlay); // 詳細画面への遷移と同じロゴ回転を挟み、画像の読み込みを隠す
   }
 
   function resumeGame() {
@@ -297,7 +297,7 @@
       answers: savedData.answers.slice(),
       locked: false
     };
-    beginPlay();
+    playCardTransition(beginPlay);
   }
 
   // ------------------------------------------------------------
