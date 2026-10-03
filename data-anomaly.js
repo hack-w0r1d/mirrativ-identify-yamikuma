@@ -540,4 +540,11 @@ const ANOMALY_DATA = {
       compareIndex: 2
     },
   ],
+  m24: [
+    {
+      note: "銃",
+      point: "銃のサイズが通常時と比べて大きい。",
+      compareIndex: 2
+    },
+  ]
 };
