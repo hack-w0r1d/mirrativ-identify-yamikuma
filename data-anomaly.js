@@ -92,7 +92,7 @@ const ANOMALY_DATA = {
     {
       note: "サイズ",
       point: "サイズが通常時と比べて小さい。",
-      compareIndex: 1
+      compareIndex: 3
     },
     {
       note: "羽",
@@ -163,17 +163,17 @@ const ANOMALY_DATA = {
     {
       note: "耳",
       point: "耳が通常時と比べて長い。",
-      compareIndex: 3
-    },
-    {
-      note: "耳",
-      point: "耳が通常時と比べて長い。",
-      compareIndex: 2
+      compareIndex: 4
     },
     {
       note: "耳",
       point: "耳が通常時と比べて長い。",
       compareIndex: 3
+    },
+    {
+      note: "耳",
+      point: "耳が通常時と比べて長い。",
+      compareIndex: 4
     },
     {
       note: "尻尾",
@@ -188,7 +188,7 @@ const ANOMALY_DATA = {
     {
       note: "尻尾",
       point: "尻尾がない。",
-      compareIndex: 3
+      compareIndex: 4
     },
   ],
   m07: [
@@ -358,12 +358,12 @@ const ANOMALY_DATA = {
     },
     {
       note: "槍",
-      point: "槍の形が骨になっている。",
+      point: "槍が骨になっている。",
       compareIndex: 2
     },
     {
       note: "槍",
-      point: "槍の形が骨になっている。",
+      point: "槍が骨になっている。",
       compareIndex: 1
     },
   ],
@@ -469,12 +469,12 @@ const ANOMALY_DATA = {
     {
       note: "槍",
       point: "槍が通常時と比べて短い。<br>持ち手の短さで判別可能。",
-      compareIndex: 3
+      compareIndex: 2
     },
     {
       note: "槍",
       point: "槍が通常時と比べて短い。",
-      compareIndex: 2
+      compareIndex: 3
     },
     {
       note: "武具",
@@ -485,6 +485,11 @@ const ANOMALY_DATA = {
       note: "武具",
       point: "武具が折り紙になっている。",
       compareIndex: 2
+    },
+    {
+      note: "武具",
+      point: "武具が折り紙になっている。",
+      compareIndex: 3
     },
   ],
   m20: [
