@@ -576,5 +576,10 @@ const ANOMALY_DATA = {
       point: "銃のサイズが通常時と比べて大きい。",
       compareIndex: 3
     },
+    {
+      note: "向き",
+      point: "向きが反転している。",
+      compareIndex: 1
+    },
   ]
 };
