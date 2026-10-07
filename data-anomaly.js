@@ -283,16 +283,21 @@ const ANOMALY_DATA = {
       point: "サイズが通常時と比べて大きい。<br>画面下に尻尾がはみ出るかどうかで判別可能。",
       compareIndex: 3
     },
-    // {
-    //   note: "サイズ",
-    //   point: "サイズが通常時と比べて大きい。",
-    //   compareIndex: 3
-    // },
-    // {
-    //   note: "サイズ",
-    //   point: "サイズが通常時と比べて大きい。",
-    //   compareIndex: 3
-    // },
+    {
+      note: "サイズ",
+      point: "サイズが通常時と比べて大きい。",
+      compareIndex: 3
+    },
+    {
+      note: "サイズ",
+      point: "サイズが通常時と比べて大きい。",
+      compareIndex: 3
+    },
+    {
+      note: "色",
+      point: "日焼けして体が変色している。",
+      compareIndex: 3
+    },
   ],
   m11: [
     {
@@ -569,7 +574,7 @@ const ANOMALY_DATA = {
     {
       note: "銃",
       point: "銃のサイズが通常時と比べて大きい。",
-      compareIndex: 2
+      compareIndex: 3
     },
   ]
 };
