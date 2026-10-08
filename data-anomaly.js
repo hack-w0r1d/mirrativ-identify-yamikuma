@@ -337,6 +337,11 @@ const ANOMALY_DATA = {
       point: "プルドッグの耳がぺしゃんこになっている。",
       compareIndex: 2
     },
+    {
+      note: "耳",
+      point: "プルドッグの耳がぺしゃんこになっている。",
+      compareIndex: 2
+    },
   ],
   m13: [
     {
