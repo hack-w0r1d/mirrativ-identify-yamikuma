@@ -280,6 +280,11 @@ const ANOMALY_DATA = {
     },
     {
       note: "サイズ",
+      point: "サイズが通常時と比べて大きい。<br>頭がヒントの枠線に重なるかどうかで判別可能。",
+      compareIndex: 2
+    },
+    {
+      note: "サイズ",
       point: "サイズが通常時と比べて大きい。<br>画面下に尻尾がはみ出るかどうかで判別可能。",
       compareIndex: 3
     },
@@ -379,7 +384,7 @@ const ANOMALY_DATA = {
     {
       note: "槍",
       point: "槍が骨になっている。",
-      compareIndex: 1
+      compareIndex: 3
     },
   ],
   m15: [
@@ -570,6 +575,11 @@ const ANOMALY_DATA = {
       compareIndex: 2
     },
     {
+      note: "サイズ",
+      point: "クジラのサイズが小さくなっている。",
+      compareIndex: 3
+    },
+    {
       note: "砲口",
       point: "クジラの砲口がなくなっている。",
       compareIndex: 2
@@ -590,6 +600,11 @@ const ANOMALY_DATA = {
       note: "向き",
       point: "向きが反転している。",
       compareIndex: 1
+    },
+    {
+      note: "向き",
+      point: "向きが反転している。",
+      compareIndex: 2
     },
   ]
 };
