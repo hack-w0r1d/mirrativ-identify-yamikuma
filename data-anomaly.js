@@ -355,6 +355,11 @@ const ANOMALY_DATA = {
       compareIndex: 1
     },
     {
+      note: "尻尾",
+      point: "尻尾の数が通常時と比べて1つ少ない。",
+      compareIndex: 2
+    },
+    {
       note: "サイズ",
       point: "サイズが通常時と比べて大きい。",
       compareIndex: 1
@@ -462,11 +467,21 @@ const ANOMALY_DATA = {
       point: "弓の向きが通常時と比べて逆向きになっている。",
       compareIndex: 2
     },
+    {
+      note: "弓",
+      point: "弓の向きが通常時と比べて逆向きになっている。",
+      compareIndex: 3
+    },
   ],
   m18: [
     {
       note: "帽子",
       point: "帽子が通常時と比べて小さい。",
+      compareIndex: 1
+    },
+    {
+      note: "舌",
+      point: "舌が通常時と比べて長い。",
       compareIndex: 1
     },
     {
@@ -511,12 +526,22 @@ const ANOMALY_DATA = {
       point: "武具が折り紙になっている。",
       compareIndex: 3
     },
+    {
+      note: "武具",
+      point: "武具が折り紙になっている。",
+      compareIndex: 3
+    },
   ],
   m20: [
     {
       note: "イノシシ",
       point: "イノシシが反対側を向いている。",
       compareIndex: 1
+    },
+    {
+      note: "イノシシ",
+      point: "イノシシが反対側を向いている。",
+      compareIndex: 2
     },
     {
       note: "イノシシの耳",
@@ -547,6 +572,11 @@ const ANOMALY_DATA = {
     },
   ],
   m22: [
+    {
+      note: "ドレス",
+      point: "ドレスが通常時と比べて長い。",
+      compareIndex: 1
+    },
     {
       note: "ドレス",
       point: "ドレスが通常時と比べて長い。",
