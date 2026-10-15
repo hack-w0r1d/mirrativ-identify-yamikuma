@@ -383,7 +383,7 @@ const ANOMALY_DATA = {
     },
     {
       note: "サイズ",
-      point: "通常時と比べてわずかにスリム。<br>単体での判別は難しいので消去法がおすすめ。<br>比較画像の角度が異なるため槍の長さで判別可能かは検証中。",
+      point: "通常時と比べてわずかにスリム。<br>単体での判別は難しいので消去法がおすすめ。",
       compareIndex: 2
     },
     {
@@ -596,6 +596,11 @@ const ANOMALY_DATA = {
       note: "サイズ",
       point: "サイズが通常時と比べて大きい。",
       compareIndex: 1
+    },
+    {
+      note: "サイズ",
+      point: "サイズが通常時と比べて大きい。",
+      compareIndex: 2
     },
   ],
   m23: [
