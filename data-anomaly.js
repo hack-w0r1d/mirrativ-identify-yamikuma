@@ -163,6 +163,11 @@ const ANOMALY_DATA = {
     {
       note: "耳",
       point: "耳が通常時と比べて長い。",
+      compareIndex: 1
+    },
+    {
+      note: "耳",
+      point: "耳が通常時と比べて長い。",
       compareIndex: 4
     },
     {
@@ -316,14 +321,14 @@ const ANOMALY_DATA = {
       compareIndex: 3
     },
     {
+      note: "杖",
+      point: "杖の形が通常時と異なる。",
+      compareIndex: 5
+    },
+    {
       note: "帽子・ズボン",
       point: "クラウンの先が通常時よりとがっている。<br>ズボンが赤くなっている。",
       compareIndex: 3
-    },
-    {
-      note: "杖",
-      point: "杖の形が通常時と異なる。",
-      compareIndex: 4
     },
   ],
   m12: [
@@ -380,6 +385,11 @@ const ANOMALY_DATA = {
       note: "サイズ",
       point: "通常時と比べてわずかにスリム。<br>単体での判別は難しいので消去法がおすすめ。",
       compareIndex: 2
+    },
+    {
+      note: "サイズ",
+      point: "通常時と比べてわずかにスリム。<br>単体での判別は難しいので消去法がおすすめ。",
+      compareIndex: 3
     },
     {
       note: "槍",
