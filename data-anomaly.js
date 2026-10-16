@@ -31,11 +31,6 @@ const ANOMALY_DATA = {
       compareIndex: 1
     },
     {
-      note: "尻尾",
-      point: "尻尾が通常時と比べて少し長い。<br>単体での判別は難しいので消去法がおすすめ。",
-      compareIndex: 1
-    },
-    {
       note: "色",
       point: "体が変色している。",
       compareIndex: 1
