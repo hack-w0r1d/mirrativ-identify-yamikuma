@@ -326,9 +326,14 @@ const ANOMALY_DATA = {
       compareIndex: 5
     },
     {
-      note: "帽子・ズボン",
-      point: "クラウンの先が通常時よりとがっている。<br>ズボンが赤くなっている。",
+      note: "帽子",
+      point: "クラウンの先が通常時より尖っている。",
       compareIndex: 3
+    },
+    {
+      note: "帽子",
+      point: "クラウンの先が通常時より尖っている。",
+      compareIndex: 5
     },
   ],
   m12: [
